@@ -29,7 +29,7 @@ function Home() {
       </div>
       <p className="m-4">{user?.email}</p>
       <button
-        className="px-10 py-2 rounded-full font-semibold hover:text-main"
+        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-black"
         onClick={goToChat}
       >
         Go to chat
