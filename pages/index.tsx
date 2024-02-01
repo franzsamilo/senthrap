@@ -32,7 +32,7 @@ function Index() {
         </div>
         <div className=" items-center justify-center my-auto">
           <Image
-            src="/assets/svg's/heart-senthrap.svg"
+            src="/assets/senthrap-logo-no-bg.png"
             alt="Heart Senthrap"
             width={160}
             height={80}
@@ -40,7 +40,7 @@ function Index() {
           />
         </div>
         <button
-          className="bg-senthrap-neutral-100 rounded-md py-1 w-2/3 mb-12"
+          className="bg-senthrap-neutral-100 rounded-md py-1 w-2/3 mb-12 hover:bg-senthrap-yellow-100 hover:text-senthrap-blue-100"
           onClick={auth0Login}
         >
           <p className="text-senthrap-blue-100 text-xl font-bold">
