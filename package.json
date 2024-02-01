@@ -12,6 +12,7 @@
     "@auth0/nextjs-auth0": "^3.5.0",
     "firebase": "^10.8.0",
     "next": "14.0.3",
+    "openai": "^4.26.0",
     "react": "^18",
     "react-dom": "^18"
   },
