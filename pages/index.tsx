@@ -20,23 +20,22 @@ function Index() {
   }
 
   return (
-    <div className="bg-senthrap-splash bg-cover bg-center h-screen w-screen ">
-      <div className="flex flex-col items-center h-full text-center">
-        <div className="mx-12 mt-12">
-          <p className="text-4xl font-bold text-senthrap-yellow-100 drop-shadow-md		">
+    <div className="bg-senthrap-splash bg-cover bg-center h-screen w-screen pt-12 ">
+      <div className="flex flex-col items-center h-full text-center justify-between">
+        <div className="mx-12">
+          <p className="text-4xl font-bold text-senthrap-yellow-100 drop-shadow-md">
             WELCOME TO SENTHRAP
           </p>
           <p className="text-senthrap-yellow-100 text-lg italic">
             a mental health app
           </p>
         </div>
-        <div className=" items-center justify-center my-auto">
+        <div className="items-center justify-center">
           <Image
             src="/assets/senthrap-logo-no-bg.png"
             alt="Heart Senthrap"
-            width={160}
-            height={80}
-            className="mb-[70px]"
+            width={200}
+            height={100}
           />
         </div>
         <button
