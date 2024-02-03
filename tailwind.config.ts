@@ -20,7 +20,10 @@ const config: Config = {
             "100": "#FFFDE3",
           },
           blue: {
+            "10": "#D0E4EC",
+            "50": "#60B0E1",
             "100": "#6DC1F5",
+            "200": "#5CABDD",
           },
           yellow: {
             "100": "#FFFABE",

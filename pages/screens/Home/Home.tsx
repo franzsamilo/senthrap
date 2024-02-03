@@ -12,7 +12,11 @@ function Home() {
   }
 
   function goToChat() {
-    router.push("/screens/Chat/Chat")
+    router.push("/screens/AIChat/Chat")
+  }
+
+  function goToMoodLog() {
+    router.push("/screens/MoodLog/MoodLog")
   }
 
   return (
@@ -29,13 +33,19 @@ function Home() {
       </div>
       <p className="m-4">{user?.email}</p>
       <button
-        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-black"
+        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-senthrap-blue-100 mx-12"
         onClick={goToChat}
       >
-        Go to chat
+        Go to Chat
       </button>
       <button
-        className="px-10 py-2 rounded-full font-semibold hover:text-main"
+        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-senthrap-blue-100 mt-4 mx-12"
+        onClick={goToMoodLog}
+      >
+        Go to Mood Log
+      </button>
+      <button
+        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-black mt-4 mx-12"
         onClick={auth0Logout}
       >
         Logout
