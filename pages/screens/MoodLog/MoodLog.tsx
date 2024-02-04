@@ -58,7 +58,7 @@ function MoodLog() {
   return (
     <div className="flex flex-col h-screen w-screen bg-senthrap-blue-100">
       <Header />
-      <div className="flex flex-col items-center justify-between mt-8">
+      <div className="flex flex-col items-center mt-8">
         <Image
           src="/assets/senthrap-logo-no-bg.png"
           alt="Heart Senthrap"
@@ -72,7 +72,7 @@ function MoodLog() {
           <p className="text-white font-extrabold text-2xl">
             How do you feel now?
           </p>
-          <div className="flex flex-row justify-between items-center mt-4">
+          <div className="flex flex-row  items-center mt-4 justify-between">
             <button onClick={() => handleEmojiClick("HAPPY")}>
               <Image
                 src="/assets/svg's/mood-happy.svg"
@@ -125,7 +125,7 @@ function MoodLog() {
           <form onSubmit={handleSubmit}>
             <button
               type="submit"
-              className="bg-senthrap-blue-200 text-white font-bold rounded-lg py-2 px-28 mt-6 w-full text-2xl hover:bg-white hover:text-senthrap-blue-200"
+              className="bg-senthrap-blue-200 text-white font-bold rounded-lg py-2 px-28 mt-6 text-2xl hover:bg-white hover:text-senthrap-blue-200"
             >
               Submit
             </button>
