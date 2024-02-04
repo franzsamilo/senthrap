@@ -108,20 +108,20 @@ function MoodLog() {
           </div>
           <div className="flex flex-row mt-2">
             <p className="text-white font-extrabold text-sm">You are feeling</p>
-            <p className="text-senthrap-blue-50 font-extrabold text-sm mx-2">
+            <p className="text-senthrap-blue-50 font-extrabold text-sm ml-1">
               {moodToEmoji(emoji) ? moodToEmoji(emoji) : "..."}
             </p>
           </div>
         </div>
         <div className="flex flex-col border-[5px] border-senthrap-blue-200 bg-senthrap-blue-10 mt-8 mx-8 p-2 w-fit rounded-xl">
           <textarea
-            className="focus:outline-none p-5 min-h-80 h-auto min-w-72 bg-senthrap-blue-10 text-white text-sm placeholder-white w-full"
+            className="focus:outline-none p-5 min-h-80 h-auto min-w-72 bg-senthrap-blue-10 text-senthrap-blue-50 font-medium text-sm placeholder-white w-full"
             placeholder="Why do you feel that way?"
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
         </div>
-        <div className="mt-8">
+        <div>
           <form onSubmit={handleSubmit}>
             <button
               type="submit"
