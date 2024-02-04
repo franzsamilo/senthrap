@@ -3,12 +3,18 @@ import { useUser } from "@auth0/nextjs-auth0/client"
 import { useRouter } from "next/router"
 import Home from "./screens/Home/Home"
 import Image from "next/image"
+import loadinganimation from "../public/assets/heart-loading.gif"
 
 function Index() {
   const router = useRouter()
   const { user, error, isLoading } = useUser()
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading)
+    return (
+      <div className="flex items-center justify-center h-screen w-screen">
+        <Image src={loadinganimation} alt="hi" className=" mt-[10%]" />
+      </div>
+    )
   if (error) return <div>{error.message}</div>
 
   function auth0Login() {
@@ -23,10 +29,10 @@ function Index() {
     <div className="bg-senthrap-splash bg-cover bg-center h-screen w-screen pt-12 ">
       <div className="flex flex-col items-center h-full text-center justify-between">
         <div className="mx-12">
-          <p className="text-4xl font-bold text-senthrap-yellow-100 drop-shadow-md">
+          <p className="text-4xl font-bold text-senthrap-blue-100 drop-shadow-md">
             WELCOME TO SENTHRAP
           </p>
-          <p className="text-senthrap-yellow-100 text-lg italic">
+          <p className="text-senthrap-blue-100 text-lg italic">
             a mental health app
           </p>
         </div>
@@ -39,12 +45,10 @@ function Index() {
           />
         </div>
         <button
-          className="bg-senthrap-neutral-100 rounded-md py-1 w-2/3 mb-12 hover:bg-senthrap-yellow-100 hover:text-senthrap-blue-100"
+          className="bg-senthrap-yellow-100 rounded-md py-1 w-2/3 mb-12 hover:bg-senthrap-blue-100 hover:text-white"
           onClick={auth0Login}
         >
-          <p className="text-senthrap-blue-100 text-xl font-bold">
-            Get Started
-          </p>
+          <p className="text-white text-xl font-bold">Get Started</p>
         </button>
       </div>
     </div>

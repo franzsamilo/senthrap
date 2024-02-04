@@ -13,8 +13,13 @@ function MoodLog() {
   return (
     <div className="flex flex-col h-screen w-screen bg-senthrap-blue-100">
       <Header />
-      <main></main>
       <div className="flex flex-col items-center justify-between mt-8">
+        <Image
+          src="/assets/senthrap-logo-no-bg.png"
+          alt="Heart Senthrap"
+          width={50}
+          height={25}
+        />
         <h1 className="font-bold text-4xl text-senthrap-neutral-100">
           Mood Log
         </h1>
