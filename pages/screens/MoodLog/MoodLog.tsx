@@ -69,8 +69,8 @@ function MoodLog() {
             placeholder="Why do you feel that way?"
           />
         </div>
-        <div className="absolute items-center flex bottom-0 mb-6">
-          <button className="bg-senthrap-blue-200 text-white font-bold rounded-lg py-2 px-28 mt-6 mx-8 w-full text-2xl hover:bg-white hover:text-senthrap-blue-200">
+        <div className="mt-8">
+          <button className="bg-senthrap-blue-200 text-white font-bold rounded-lg py-2 px-28 mt-6 w-full text-2xl hover:bg-white hover:text-senthrap-blue-200">
             Submit
           </button>
         </div>
