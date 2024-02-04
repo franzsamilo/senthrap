@@ -2,7 +2,7 @@ import React from "react"
 import { useUser } from "@auth0/nextjs-auth0/client"
 import { useRouter } from "next/router"
 import Image from "next/image"
-import useNavigation from "../../../constant/Hooks/Navigation"
+import useNavigation from "../../api/src/Hooks/Navigation"
 
 function Home() {
   const { user } = useUser()
