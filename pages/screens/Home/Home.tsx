@@ -2,25 +2,16 @@ import React from "react"
 import { useUser } from "@auth0/nextjs-auth0/client"
 import { useRouter } from "next/router"
 import Image from "next/image"
+import { useNavigation } from "../Hooks/Navigation"
 
 function Home() {
   const { user } = useUser()
   const router = useRouter()
+  const { navigateToChat, navigateToMoodLog, navigateToActivityLog } =
+    useNavigation()
 
   function auth0Logout() {
     router.push("/api/auth/logout")
-  }
-
-  function goToChat() {
-    router.push("/screens/AIChat/Chat")
-  }
-
-  function goToMoodLog() {
-    router.push("/screens/MoodLog/MoodLog")
-  }
-
-  function goToActivityLog() {
-    router.push("/screens/ActivityLog/ActivityLog")
   }
 
   return (
@@ -38,19 +29,19 @@ function Home() {
       <p className="m-4">{user?.email}</p>
       <button
         className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-senthrap-blue-100 mx-12"
-        onClick={goToChat}
+        onClick={navigateToChat}
       >
         Go to Chat
       </button>
       <button
         className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-senthrap-blue-100 mt-4 mx-12"
-        onClick={goToMoodLog}
+        onClick={navigateToMoodLog}
       >
         Go to Mood Log
       </button>
       <button
         className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-senthrap-blue-100 mt-4 mx-12"
-        onClick={goToActivityLog}
+        onClick={navigateToActivityLog}
       >
         Go to Activity Log
       </button>
