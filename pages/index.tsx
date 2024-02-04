@@ -29,10 +29,10 @@ function Index() {
     <div className="bg-senthrap-splash bg-cover bg-center h-screen w-screen pt-12 ">
       <div className="flex flex-col items-center h-full text-center justify-between">
         <div className="mx-12">
-          <p className="text-4xl font-bold text-senthrap-blue-100 drop-shadow-md">
+          <p className="text-4xl font-bold text-senthrap-neutral-100 drop-shadow-md">
             WELCOME TO SENTHRAP
           </p>
-          <p className="text-senthrap-blue-100 text-lg italic">
+          <p className="text-senthrap-neutral-100 text-lg italic">
             a mental health app
           </p>
         </div>
@@ -45,10 +45,12 @@ function Index() {
           />
         </div>
         <button
-          className="bg-senthrap-yellow-100 rounded-md py-1 w-2/3 mb-12 hover:bg-senthrap-blue-100 hover:text-white"
+          className="bg-senthrap-neutral-100 rounded-md py-1 w-2/3 mb-12 hover:bg-senthrap-blue-100 hover:text-white"
           onClick={auth0Login}
         >
-          <p className="text-white text-xl font-bold">Get Started</p>
+          <p className="text-senthrap-blue-100 text-xl font-bold">
+            Get Started
+          </p>
         </button>
       </div>
     </div>
