@@ -72,7 +72,7 @@ function MoodLog() {
           <p className="text-white font-extrabold text-2xl">
             How do you feel now?
           </p>
-          <div className="flex flex-row  items-center mt-4">
+          <div className="flex flex-row  items-center mt-4 justify-between">
             <button onClick={() => handleEmojiClick("HAPPY")}>
               <Image
                 src="/assets/svg's/mood-happy.svg"
