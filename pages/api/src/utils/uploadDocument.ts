@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc } from "firebase/firestore"
+import { addDoc, collection } from "firebase/firestore"
 import { db } from "../config/firebase"
 
 export default async function uploadDocument(

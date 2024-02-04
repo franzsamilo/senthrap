@@ -13,7 +13,6 @@ export default async function handler(
       key2: key2,
     }
     uploadDocument(collectionName, data)
-
     res.status(200).json({ message: "POST request processed successfully" })
   } else {
     // Handle other HTTP methods if needed
