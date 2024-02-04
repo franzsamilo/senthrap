@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 
-export function useNavigation() {
+export default function useNavigation() {
   const router = useRouter()
 
   function navigateToHome() {

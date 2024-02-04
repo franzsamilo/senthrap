@@ -1,6 +1,6 @@
 import React from "react"
 import Image from "next/image"
-import { useNavigation } from "../Hooks/Navigation"
+import useNavigation from "../Hooks/Navigation"
 
 function MoodUploadSuccess() {
   const { navigateToHome, navigateToMoodLog } = useNavigation()

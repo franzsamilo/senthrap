@@ -3,7 +3,7 @@ import Header from "../Components/Header"
 import Image from "next/image"
 import { moodMap } from "@/constant/enums/moodMap"
 import { useUser } from "@auth0/nextjs-auth0/client"
-import { useNavigation } from "../Hooks/Navigation"
+import useNavigation from "../Hooks/Navigation"
 
 function MoodLog() {
   const [emoji, setEmoji] = React.useState("?")
