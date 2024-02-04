@@ -45,7 +45,7 @@ function Index() {
           />
         </div>
         <button
-          className="bg-senthrap-neutral-100 rounded-md py-1 w-2/3 mb-12 hover:bg-senthrap-blue-100 hover:text-white"
+          className="bg-senthrap-neutral-100 rounded-md py-1 w-2/3 mb-12 hover:bg-white hover:text-white"
           onClick={auth0Login}
         >
           <p className="text-senthrap-blue-100 text-xl font-bold">
