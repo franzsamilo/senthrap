@@ -1,7 +1,10 @@
 import { deleteDoc, doc } from "firebase/firestore"
 import { db } from "../config/firebase"
 
-async function deleteDocument(collectionName: string, documentId: string) {
+export default async function deleteDocument(
+  collectionName: string,
+  documentId: string
+) {
   try {
     const documentRef = doc(db, collectionName, documentId)
     await deleteDoc(documentRef)
