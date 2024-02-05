@@ -14,6 +14,10 @@ function Home() {
     router.push("/api/auth/logout")
   }
 
+  function goToHomeChat() {
+    router.push("/screens/AIChat/HomeChat")
+  }
+
   return (
     <div className="flex flex-col min-h-screen w-screen bg-senthrap-blue-100">
       <div className="flex flex-row mt-4">
@@ -28,8 +32,8 @@ function Home() {
       </div>
       <p className="m-4">{user?.email}</p>
       <button
-        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-senthrap-blue-200 mx-12"
-        onClick={navigateToChat}
+        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-black"
+        onClick={goToHomeChat}
       >
         Go to Chat
       </button>
