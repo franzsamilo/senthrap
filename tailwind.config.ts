@@ -13,6 +13,7 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "senthrap-gradient": "linear-gradient(90deg, #6DC1F5 0%, #5CABDD 100%)",
       },
       colors: {
         senthrap: {

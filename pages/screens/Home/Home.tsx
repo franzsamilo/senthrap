@@ -7,8 +7,12 @@ import useNavigation from "../../api/src/Hooks/Navigation"
 function Home() {
   const { user } = useUser()
   const router = useRouter()
-  const { navigateToChat, navigateToMoodLog, navigateToActivityLog } =
-    useNavigation()
+  const {
+    navigateToChat,
+    navigateToMoodLog,
+    navigateToActivityLog,
+    navigateToRadialMenu,
+  } = useNavigation()
 
   function auth0Logout() {
     router.push("/api/auth/logout")
@@ -44,6 +48,12 @@ function Home() {
         onClick={navigateToActivityLog}
       >
         Go to Activity Log
+      </button>
+      <button
+        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-senthrap-blue-200 mt-4 mx-12"
+        onClick={navigateToRadialMenu}
+      >
+        Go to Radial Menu
       </button>
       <button
         className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-black mt-4 mx-12"

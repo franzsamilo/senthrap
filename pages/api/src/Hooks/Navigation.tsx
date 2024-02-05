@@ -23,11 +23,16 @@ export default function useNavigation() {
     router.push("/screens/MoodLog/MoodUploadSuccess")
   }
 
+  function navigateToRadialMenu() {
+    router.push("/screens/Components/RadialMenu")
+  }
+
   return {
     navigateToHome,
     navigateToActivityLog,
     navigateToChat,
     navigateToMoodLog,
     navigateToMoodUploadSuccess,
+    navigateToRadialMenu,
   }
 }
