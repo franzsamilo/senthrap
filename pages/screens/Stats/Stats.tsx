@@ -1,8 +1,19 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Header from "../Components/Header"
 import Image from "next/image"
+import { useUser } from "@auth0/nextjs-auth0/client"
+import { DocumentData } from "firebase/firestore"
 
 function Stats() {
+  const [data, setData] = useState<DocumentData[]>()
+  const { user } = useUser()
+  useEffect(() => {
+    // Fetch data from API route on page load
+    fetch(`/api/fetchMoods`)
+      .then((response) => console.log(response))
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error:", error))
+  }, [user])
   return (
     <div className="flex flex-col h-screen w-screen bg-senthrap-blue-100">
       <Header />
@@ -19,9 +30,7 @@ function Stats() {
             What you felt earlier:
           </h2>
           <div className="min-h-10 h-auto">
-            <p className="text-white font-normal text-xs">
-              I feel awesome xDDDDDD
-            </p>
+            <p className="text-white font-normal text-xs">2</p>
           </div>
         </div>
         <div className="flex flex-col border-[5px] border-senthrap-blue-200 bg-senthrap-blue-10 mt-8 mx-8 p-2 w-5/6 rounded-xl">
