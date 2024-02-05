@@ -5,7 +5,7 @@ function HomeChat() {
   const router = useRouter()
 
   function goToChat() {
-    router.push("/screens/Chat/AIChat")
+    router.push("/screens/AIChat/AIChat")
   }
 
   return (

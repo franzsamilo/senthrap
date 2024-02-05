@@ -18,4 +18,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
+console.log(process.env.FIREBASE_API_KEY)
+
 export { app, db }
