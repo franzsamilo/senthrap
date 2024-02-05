@@ -11,8 +11,8 @@ function Home() {
     router.push("/api/auth/logout")
   }
 
-  function goToChat() {
-    router.push("/screens/Chat/Chat")
+  function goToHomeChat() {
+    router.push("/screens/Chat/HomeChat")
   }
 
   return (
@@ -30,7 +30,7 @@ function Home() {
       <p className="m-4">{user?.email}</p>
       <button
         className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-black"
-        onClick={goToChat}
+        onClick={goToHomeChat}
       >
         Go to chat
       </button>
