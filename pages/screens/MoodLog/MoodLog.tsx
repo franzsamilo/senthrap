@@ -121,7 +121,7 @@ function MoodLog() {
             onChange={(e) => setContent(e.target.value)}
           />
         </div>
-        <div>
+        <div className="flex">
           <form onSubmit={handleSubmit}>
             <button
               type="submit"
