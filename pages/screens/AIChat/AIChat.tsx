@@ -2,6 +2,9 @@ import React, { useState } from "react"
 import OpenAI from "openai"
 import Image from "next/image"
 import Header from "../Components/Header"
+import { app, db } from "../../api/src/config/firebase"
+import { collection, addDoc } from "firebase/firestore"
+import { useRouter } from "next/router"
 
 require("dotenv").config({ path: "../.env.local" })
 
@@ -11,6 +14,8 @@ function Chat() {
     content: string
     name?: string
   }
+
+  const router = useRouter()
 
   const isAxiosError = (error: any): error is import("axios").AxiosError => {
     return (error as import("axios").AxiosError)?.isAxiosError === true
@@ -31,6 +36,43 @@ function Chat() {
     apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true,
   })
+
+  const summarizeConversation = async (
+    conversationHistory: Message[]
+  ): Promise<string> => {
+    const fullText = conversationHistory.map((msg) => msg.content).join("\n")
+    const response = await openai.completions.create({
+      model: "gpt-3.5-turbo",
+      prompt: `Please summarize the following text:\n${fullText}\n\nSummary:`,
+      temperature: 0.5,
+      max_tokens: 1024,
+      n: 1,
+    })
+    console.log(response.choices[0].text.trim())
+    return response.choices[0].text.trim()
+  }
+
+  const sendConversationToFirestore = async (summary: string) => {
+    try {
+      const docRef = await addDoc(collection(db, "conversations"), {
+        summary: summary,
+        timestamp: Date.now(),
+      })
+      console.log("Document written with ID: ", docRef.id)
+    } catch (e) {
+      console.error("Error adding document: ", e)
+    }
+  }
+
+  const endSessionAndRedirect = async () => {
+    const summary = await summarizeConversation(conversationHistory)
+
+    await sendConversationToFirestore(summary)
+
+    setConversationHistory([])
+
+    router.push("/screens/Home/Home")
+  }
 
   const handleSendMessage = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -108,6 +150,9 @@ function Chat() {
             {isLoading && <div className="self-center">Loading...</div>}
           </div>
         </div>
+        <button onClick={endSessionAndRedirect} className="">
+          End Session
+        </button>
         <form
           className="mb-4 flex items-center justify-center w-screen"
           onSubmit={handleSendMessage}
