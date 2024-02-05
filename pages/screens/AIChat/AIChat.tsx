@@ -138,7 +138,7 @@ function Chat() {
 
   return (
     <section className="flex flex-col h-screen">
-      <Header></Header>
+      <Header />
       <main className="flex flex-col justify-end items-center overflow-y-auto bg-senthrap-blue-100 h-full">
         <div className="chat-container mx-2 py-4 overflow-y-auto">
           <div className="flex justify-center items-center mb-6">

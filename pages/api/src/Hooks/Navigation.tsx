@@ -8,7 +8,7 @@ export default function useNavigation() {
   }
 
   function navigateToChat() {
-    router.push("/screens/AIChat/Chat")
+    router.push("/screens/AIChat/HomeChat")
   }
 
   function navigateToMoodLog() {
@@ -23,16 +23,11 @@ export default function useNavigation() {
     router.push("/screens/MoodLog/MoodUploadSuccess")
   }
 
-  function navigateToRadialMenu() {
-    router.push("/screens/Components/RadialMenu")
-  }
-
   return {
     navigateToHome,
     navigateToActivityLog,
     navigateToChat,
     navigateToMoodLog,
     navigateToMoodUploadSuccess,
-    navigateToRadialMenu,
   }
 }
