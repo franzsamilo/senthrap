@@ -3,9 +3,24 @@ import Header from "../Components/Header"
 import Image from "next/image"
 import { useUser } from "@auth0/nextjs-auth0/client"
 import { DocumentData } from "firebase/firestore"
+import { moodMap } from "@/constant/enums/moodMap"
+
+interface MoodData {
+  mood_value: string
+  mood_log_upload_time: string
+  mood_log_content: string
+  user_id: string
+}
 
 function Stats() {
-  const [data, setData] = useState<DocumentData[]>()
+  const [data, setData] = useState<MoodData[]>()
+  const [happyCount, setHappyCount] = useState(0)
+  const [neutralCount, setNeutralCount] = useState(0)
+  const [sadCount, setSadCount] = useState(0)
+  const [angryCount, setAngryCount] = useState(0)
+  const [lastFelt, setLastFelt] = useState("")
+
+  let userData: MoodData[] = []
   const { user } = useUser()
   useEffect(() => {
     // Fetch data from API route on page load
@@ -17,11 +32,56 @@ function Stats() {
         return response.json()
       })
       .then((data) => {
-        // Handle the data
-        setData(data)
+        // Filter the data based on the user ID
+        const filteredData = data.data.filter(
+          (entry: MoodData) => entry.user_id === user?.sub
+        )
+        // Set the filtered data to the state
+        setData(filteredData)
       })
       .catch((error) => console.error("Error:", error))
   }, [user])
+
+  useEffect(() => {
+    if (data) {
+      const counts = {
+        happy: 0,
+        neutral: 0,
+        sad: 0,
+        angry: 0,
+      }
+      data.forEach((entry) => {
+        switch (entry.mood_value) {
+          case moodMap.HAPPY:
+            counts.happy++
+            break
+          case moodMap.NEUTRAL:
+            counts.neutral++
+            break
+          case moodMap.SAD:
+            counts.sad++
+            break
+          case moodMap.ANGRY:
+            counts.angry++
+            break
+          default:
+            break
+        }
+
+        const latestDate = data.reduce((latest, current) => {
+          const latestTime = new Date(latest.mood_log_upload_time).getTime()
+          const currentTime = new Date(current.mood_log_upload_time).getTime()
+          return currentTime > latestTime ? current : latest
+        }, data[0])
+
+        setLastFelt(latestDate.mood_value)
+      })
+      setHappyCount(counts.happy)
+      setNeutralCount(counts.neutral)
+      setSadCount(counts.sad)
+      setAngryCount(counts.angry)
+    }
+  }, [data])
 
   return (
     <div className="flex flex-col h-screen w-screen bg-senthrap-blue-100">
@@ -38,8 +98,10 @@ function Stats() {
           <h2 className="text-white font-extrabold text-2x">
             What you felt earlier:
           </h2>
-          <div className="min-h-10 h-auto">
-            <p className="text-white font-normal text-xs">2</p>
+          <div className="min-h-4 h-auto">
+            <p className="text-senthrap-blue-200 font-extrabold text-xl">
+              {lastFelt.toUpperCase()}
+            </p>
           </div>
         </div>
         <div className="flex flex-col border-[5px] border-senthrap-blue-200 bg-senthrap-blue-10 mt-8 mx-8 p-2 w-5/6 rounded-xl">
@@ -52,7 +114,7 @@ function Stats() {
                 width={42}
                 height={42}
               />
-              <p className=" text-senthrap-blue-200 font-bold">12</p>
+              <p className=" text-senthrap-blue-200 font-bold">{happyCount}</p>
             </div>
             <div className="flex-col flex items-center">
               <Image
@@ -61,7 +123,7 @@ function Stats() {
                 width={38}
                 height={38}
               />
-              <p className="text-senthrap-blue-200 font-bold">12</p>
+              <p className="text-senthrap-blue-200 font-bold">{neutralCount}</p>
             </div>
             <div className="flex-col flex items-center">
               <Image
@@ -70,7 +132,7 @@ function Stats() {
                 width={42}
                 height={42}
               />
-              <p className="text-senthrap-blue-200 font-bold">12</p>
+              <p className="text-senthrap-blue-200 font-bold">{sadCount}</p>
             </div>
             <div className="flex-col flex items-center">
               <Image
@@ -79,7 +141,7 @@ function Stats() {
                 width={42}
                 height={42}
               />
-              <p className="text-senthrap-blue-200 font-bold">12</p>
+              <p className="text-senthrap-blue-200 font-bold">{angryCount}</p>
             </div>
           </div>
         </div>
