@@ -139,14 +139,14 @@ function Chat() {
   return (
     <section className="flex flex-col h-screen">
       <Header></Header>
-      <main className="flex flex-col justify-end items-center bg-senthrap-blue-100 h-full">
-        <div className="chat-container mx-2 overflow-y-auto h-[calc(100vh-10rem)] py-4">
+      <main className="flex flex-col justify-end items-center overflow-y-auto bg-senthrap-blue-100 h-full">
+        <div className="chat-container mx-2 py-4 overflow-y-auto">
           <div className="flex justify-center items-center mb-6">
             <div className="text-center">
               {"I'm here for you. Feel free to talk to me."}
             </div>
           </div>
-          <div className="flex flex-col overflow-y-auto">
+          <div className="flex flex-col">
             {conversationHistory
               .filter((message) => message.role !== "system")
               .map((message, index) => (
@@ -162,11 +162,14 @@ function Chat() {
                 </div>
               ))}
             {isLoading && <div className="self-center">Loading...</div>}
+            <button
+              onClick={endSession}
+              className="py-3 px-6 bg-senthrap-yellow-100 rounded-lg mb-2"
+            >
+              End Session
+            </button>
           </div>
         </div>
-        <button onClick={endSession} className="">
-          End Session
-        </button>
         <form
           className="mb-4 flex items-center justify-center w-screen"
           onSubmit={handleSendMessage}
