@@ -1,10 +1,9 @@
-import React, { useState } from "react"
+import React, { SyntheticEvent, useState } from "react"
 import OpenAI from "openai"
 import Image from "next/image"
 import Header from "../Components/Header"
-import { app, db } from "../../api/src/config/firebase"
-import { collection, addDoc } from "firebase/firestore"
 import { useRouter } from "next/router"
+import { useUser } from "@auth0/nextjs-auth0/client"
 
 require("dotenv").config({ path: "../.env.local" })
 
@@ -16,6 +15,7 @@ function Chat() {
   }
 
   const router = useRouter()
+  const { user } = useUser()
 
   const isAxiosError = (error: any): error is import("axios").AxiosError => {
     return (error as import("axios").AxiosError)?.isAxiosError === true
@@ -41,37 +41,51 @@ function Chat() {
     conversationHistory: Message[]
   ): Promise<string> => {
     const fullText = conversationHistory.map((msg) => msg.content).join("\n")
-    const response = await openai.completions.create({
+    const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      prompt: `Please summarize the following text:\n${fullText}\n\nSummary:`,
+      messages: [
+        { role: "system", content: "You are a helpful assistant." },
+        {
+          role: "user",
+          content: `Please summarize the following text:\n${fullText}\n\nSummary:`,
+        },
+      ],
       temperature: 0.5,
       max_tokens: 1024,
       n: 1,
     })
-    console.log(response.choices[0].text.trim())
-    return response.choices[0].text.trim()
-  }
 
-  const sendConversationToFirestore = async (summary: string) => {
-    try {
-      const docRef = await addDoc(collection(db, "conversations"), {
-        summary: summary,
-        timestamp: Date.now(),
-      })
-      console.log("Document written with ID: ", docRef.id)
-    } catch (e) {
-      console.error("Error adding document: ", e)
+    console.log(response.choices[0]?.message?.content?.trim() ?? "")
+    return response.choices[0]?.message?.content?.trim() ?? ""
+  }
+  const endSession = async (e: SyntheticEvent) => {
+    e.preventDefault()
+
+    if (!user) {
+      console.error("User not authenticated")
+      return
     }
-  }
 
-  const endSessionAndRedirect = async () => {
     const summary = await summarizeConversation(conversationHistory)
 
-    await sendConversationToFirestore(summary)
+    const fetchResponse = await fetch("/api/uploadSummary", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        summary_content: summary,
+        user_id: user.sub,
+      }),
+    })
 
-    setConversationHistory([])
-
-    router.push("/screens/Home/Home")
+    if (fetchResponse.ok) {
+      console.log("Summary uploaded successfully")
+      console.log(fetchResponse)
+      router.push("../Home/Home")
+    } else {
+      console.error("Failed to upload summary")
+    }
   }
 
   const handleSendMessage = async (event: React.FormEvent) => {
@@ -150,7 +164,7 @@ function Chat() {
             {isLoading && <div className="self-center">Loading...</div>}
           </div>
         </div>
-        <button onClick={endSessionAndRedirect} className="">
+        <button onClick={endSession} className="">
           End Session
         </button>
         <form
