@@ -15,7 +15,7 @@ function Home() {
   }
 
   function goToHomeChat() {
-    router.push("/screens/Chat/HomeChat")
+    router.push("/screens/AIChat/HomeChat")
   }
 
   return (
