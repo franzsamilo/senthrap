@@ -15,7 +15,7 @@ function Home() {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen w-screen bg-senthrap-blue-100">
       <div className="flex flex-row mt-4">
         <Image
           src={user?.picture || ""}
@@ -28,19 +28,19 @@ function Home() {
       </div>
       <p className="m-4">{user?.email}</p>
       <button
-        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-senthrap-blue-100 mx-12"
+        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-senthrap-blue-200 mx-12"
         onClick={navigateToChat}
       >
         Go to Chat
       </button>
       <button
-        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-senthrap-blue-100 mt-4 mx-12"
+        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-senthrap-blue-200 mt-4 mx-12"
         onClick={navigateToMoodLog}
       >
         Go to Mood Log
       </button>
       <button
-        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-senthrap-blue-100 mt-4 mx-12"
+        className="px-10 py-2 rounded-full font-semibold hover:text-main text-white bg-senthrap-blue-200 mt-4 mx-12"
         onClick={navigateToActivityLog}
       >
         Go to Activity Log

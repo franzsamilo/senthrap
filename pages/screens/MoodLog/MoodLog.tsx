@@ -56,7 +56,7 @@ function MoodLog() {
   }
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-senthrap-blue-100">
+    <div className="flex flex-col min-h-screen w-screen bg-senthrap-blue-100">
       <Header />
       <div className="flex flex-col items-center mt-8">
         <Image
@@ -115,7 +115,7 @@ function MoodLog() {
         </div>
         <div className="flex flex-col border-[5px] border-senthrap-blue-200 bg-senthrap-blue-10 mt-8 mx-8 p-2 w-fit rounded-xl">
           <textarea
-            className="focus:outline-none p-5 min-h-80 h-auto min-w-72 bg-senthrap-blue-10 text-senthrap-blue-50 font-medium text-sm placeholder-white w-full"
+            className="focus:outline-none p-5 min-h-80 h-auto min-w-72 bg-senthrap-blue-10 text-senthrap-blue-50 font-medium text-sm placeholder-white w-full resize-none"
             placeholder="Why do you feel that way?"
             value={content}
             onChange={(e) => setContent(e.target.value)}
@@ -125,7 +125,7 @@ function MoodLog() {
           <form onSubmit={handleSubmit}>
             <button
               type="submit"
-              className="bg-senthrap-blue-200 text-white font-bold rounded-lg py-2 px-28 mt-6 text-2xl hover:bg-white hover:text-senthrap-blue-200"
+              className="bg-senthrap-blue-200 text-white font-bold rounded-lg py-2 px-28 mt-6 mb-6 text-2xl hover:bg-white hover:text-senthrap-blue-200"
             >
               Submit
             </button>
