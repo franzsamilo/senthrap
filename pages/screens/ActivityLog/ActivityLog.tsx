@@ -42,7 +42,7 @@ function ActivityLog() {
         </div>
       </div>
       <button
-        className="absolute bottom-0 right-0 mb-12 mr-16"
+        className="mt-auto ml-auto mb-12 mr-16"
         onClick={() => setOpenAddActivityLog(true)}
       >
         <Image
