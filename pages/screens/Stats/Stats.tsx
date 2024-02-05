@@ -10,10 +10,19 @@ function Stats() {
   useEffect(() => {
     // Fetch data from API route on page load
     fetch(`/api/fetchMoods`)
-      .then((response) => console.log(response))
-      .then((data) => console.log(data))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        return response.json()
+      })
+      .then((data) => {
+        // Handle the data
+        setData(data)
+      })
       .catch((error) => console.error("Error:", error))
   }, [user])
+
   return (
     <div className="flex flex-col h-screen w-screen bg-senthrap-blue-100">
       <Header />
