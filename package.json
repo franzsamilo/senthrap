@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
+    "axios": "^1.6.7",
     "firebase": "^10.8.0",
     "ionicons": "^7.2.2",
     "next": "14.0.3",
+    "openai": "^4.26.0",
     "react": "^18",
     "react-dom": "^18"
   },
