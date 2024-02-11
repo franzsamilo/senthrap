@@ -10,7 +10,7 @@ export default async function handler(
     const collectionName = "test"
     const data = {
       key1: key1,
-      key2: key2,
+      name: key2,
     }
     uploadDocument(collectionName, data)
     res.status(200).json({ message: "POST request processed successfully" })
