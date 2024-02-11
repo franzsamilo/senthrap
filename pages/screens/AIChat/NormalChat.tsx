@@ -32,6 +32,8 @@ function Chat() {
 
   const [isLoading, setIsLoading] = useState(false)
 
+  const [isEndingSession, setIsEndingSession] = useState(false)
+
   const openai = new OpenAI({
     apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true,
@@ -60,31 +62,39 @@ function Chat() {
   }
   const endSession = async (e: SyntheticEvent) => {
     e.preventDefault()
+    setIsEndingSession(true)
 
     if (!user) {
       console.error("User not authenticated")
+      setIsEndingSession(false)
       return
     }
 
-    const summary = await summarizeConversation(conversationHistory)
+    try {
+      const summary = await summarizeConversation(conversationHistory)
 
-    const fetchResponse = await fetch("/api/uploadSummary", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        summary_content: summary,
-        user_id: user.sub,
-      }),
-    })
+      const fetchResponse = await fetch("/api/uploadSummary", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          summary_content: summary,
+          user_id: user.sub,
+        }),
+      })
 
-    if (fetchResponse.ok) {
-      console.log("Summary uploaded successfully")
-      console.log(fetchResponse)
-      router.push("../Home/Home")
-    } else {
-      console.error("Failed to upload summary")
+      if (fetchResponse.ok) {
+        console.log("Summary uploaded successfully")
+        console.log(fetchResponse)
+        router.push("../Home/Home")
+      } else {
+        console.error("Failed to upload summary")
+      }
+    } catch (error) {
+      console.error("Error:", (error as Error).message)
+    } finally {
+      setIsEndingSession(false)
     }
   }
 
@@ -165,9 +175,12 @@ function Chat() {
             {isLoading && <div className="self-center">Loading...</div>}
             <button
               onClick={endSession}
-              className="py-3 px-6 bg-senthrap-yellow-100 rounded-lg mb-2"
+              className={`py-3 px-6 rounded-lg mb-2 ${
+                isEndingSession ? "bg-gray-300" : "bg-senthrap-yellow-100"
+              }`}
+              disabled={isEndingSession}
             >
-              End Session
+              {isEndingSession ? "Ending Session..." : "End Session"}
             </button>
           </div>
         </div>
