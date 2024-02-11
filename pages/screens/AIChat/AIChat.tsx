@@ -90,6 +90,7 @@ function Chat() {
 
   const handleSendMessage = async (event: React.FormEvent) => {
     event.preventDefault()
+    setInputMessage("")
     setIsLoading(true)
 
     const inputMessages = [
@@ -137,9 +138,9 @@ function Chat() {
   }
 
   return (
-    <section className="flex flex-col h-screen">
+    <section className="flex flex-col h-screen bg-senthrap-blue-100">
       <Header />
-      <main className="flex flex-col justify-end items-center overflow-y-auto bg-senthrap-blue-100 h-full">
+      <main className="flex flex-col justify-end items-center overflow-y-auto  h-full">
         <div className="chat-container mx-2 py-4 overflow-y-auto">
           <div className="flex justify-center items-center mb-6">
             <div className="text-center">
@@ -178,6 +179,7 @@ function Chat() {
             className="w-5/6 mx-2 bg-senthrap-neutral-100 p-4 rounded-lg outline-none"
             onChange={(e) => setInputMessage(e.target.value)}
             placeholder="Type your message..."
+            value={inputMessage}
           />
           <div className="w-1/6 flex justify-center">
             <button className="mr-2" type="submit">
