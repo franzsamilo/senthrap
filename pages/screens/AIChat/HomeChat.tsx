@@ -53,7 +53,7 @@ function HomeChat() {
         >
           {isLoadingChat ? "Loading..." : "I need to talk to someone."}
         </button>
-        <button
+        {/* <button
           onClick={goToAdvice}
           className={`m-2 px-4 py-2 rounded ${
             isLoadingAdvice
@@ -63,7 +63,7 @@ function HomeChat() {
           disabled={isLoadingAdvice}
         >
           {isLoadingAdvice ? "Loading..." : "I need some advice."}
-        </button>
+        </button> */}
       </main>
     </div>
   )
