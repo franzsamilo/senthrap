@@ -31,6 +31,7 @@ function RadialMenu() {
     navigateToChat,
     navigateToMoodLog,
     navigateToActivityLog,
+    navigateToStats,
   } = useNavigation()
 
   return (
@@ -93,6 +94,7 @@ function RadialMenu() {
                 )}
                 {i === 4 && (
                   <button
+                    onClick={navigateToStats}
                     style={{ transform: `rotate(${(360 / -8) * i}deg)` }}
                     className="drop-shadow-lg bg-white hover:bg-senthrap-blue-200 text-senthrap-blue-50 hover:text-white rounded-full flex justify-center items-center px-2 py-2 "
                   >

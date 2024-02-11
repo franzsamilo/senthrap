@@ -23,11 +23,16 @@ export default function useNavigation() {
     router.push("/screens/MoodLog/MoodUploadSuccess")
   }
 
+  function navigateToStats() {
+    router.push("/screens/Stats/Stats")
+  }
+
   return {
     navigateToHome,
     navigateToActivityLog,
     navigateToChat,
     navigateToMoodLog,
     navigateToMoodUploadSuccess,
+    navigateToStats,
   }
 }
