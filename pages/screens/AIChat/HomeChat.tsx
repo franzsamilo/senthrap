@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useRouter } from "next/router"
+import { ClipLoader } from "react-spinners"
 
 function HomeChat() {
   const router = useRouter()
@@ -45,24 +46,40 @@ function HomeChat() {
         <button
           onClick={goToChat}
           className={`m-2 px-4 py-2 rounded ${
-            isLoadingChat
-              ? "bg-gray-300 cursor-not-allowed"
-              : "bg-blue-500 text-white"
+            isLoadingChat ? " cursor-not-allowed" : "bg-blue-500 text-white"
           }`}
           disabled={isLoadingChat}
         >
-          {isLoadingChat ? "Loading..." : "I need to talk to someone."}
+          {isLoadingChat ? (
+            <ClipLoader
+              color={"#ffffff"}
+              loading={isLoadingChat}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          ) : (
+            "I need to talk to someone."
+          )}
         </button>
         <button
           onClick={goToAdvice}
           className={`m-2 px-4 py-2 rounded ${
-            isLoadingAdvice
-              ? "bg-gray-300 cursor-not-allowed"
-              : "bg-green-500 text-white"
+            isLoadingAdvice ? " cursor-not-allowed" : "bg-green-500 text-white"
           }`}
           disabled={isLoadingAdvice}
         >
-          {isLoadingAdvice ? "Loading..." : "I need some advice."}
+          {isLoadingAdvice ? (
+            <ClipLoader
+              color={"#ffffff"}
+              loading={isLoadingAdvice}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          ) : (
+            "I need some advice."
+          )}
         </button>
       </main>
     </div>
