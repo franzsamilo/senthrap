@@ -1,9 +1,16 @@
 import React from "react"
 import Image from "next/image"
 import { useUser } from "@auth0/nextjs-auth0/client"
+import { IoHomeOutline } from "react-icons/io5"
+import useNavigation from "@/pages/api/src/Hooks/Navigation"
+import { useRouter } from "next/router"
 
 function Header() {
   const { user } = useUser()
+  const { navigateToHome } = useNavigation()
+  const router = useRouter()
+
+  const isHomeScreen = router.pathname === "/screens/Home/Home"
 
   return (
     <div className="flex flex-row justify-between border-b-2 bg-senthrap-blue-100 border-senthrap-blue-200 shadow-md">
@@ -19,16 +26,16 @@ function Header() {
           Hello, {user?.name ? user.name.split(" ")[0] : "friend"}!
         </p>
       </div>
-      <div className="my-4 mr-4">
-        <button>
-          <Image
-            src="/assets/svg's/nav-menu-button.svg"
-            alt="Mood Icon"
-            width={52}
-            height={47}
-          />
-        </button>
-      </div>
+      {!isHomeScreen && (
+        <div className="mr-6 mt-6">
+          <button
+            onClick={navigateToHome}
+            className="drop-shadow-lg text-white hover:text-senthrap-blue-50 rounded-full flex justify-center items-center"
+          >
+            <IoHomeOutline className="w-10 h-10 " />
+          </button>
+        </div>
+      )}
     </div>
   )
 }
