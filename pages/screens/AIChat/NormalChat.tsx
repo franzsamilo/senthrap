@@ -4,6 +4,7 @@ import Image from "next/image"
 import Header from "../Components/Header"
 import { useRouter } from "next/router"
 import { useUser } from "@auth0/nextjs-auth0/client"
+import { ClipLoader } from "react-spinners"
 
 require("dotenv").config({ path: "../.env.local" })
 
@@ -172,7 +173,15 @@ function Chat() {
                   <span>{message.content}</span>
                 </div>
               ))}
-            {isLoading && <div className="self-center">Loading...</div>}
+            <div className="self-center">
+              <ClipLoader
+                color={"#ffffff"}
+                loading={isLoading}
+                size={50}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </div>
             <button
               onClick={endSession}
               className={`py-3 px-6 rounded-lg mb-2 ${
@@ -180,7 +189,17 @@ function Chat() {
               }`}
               disabled={isEndingSession}
             >
-              {isEndingSession ? "Ending Session..." : "End Session"}
+              {isEndingSession ? (
+                <ClipLoader
+                  color={"#ffffff"}
+                  loading={isLoading}
+                  size={50}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : (
+                "End Session"
+              )}
             </button>
           </div>
         </div>
