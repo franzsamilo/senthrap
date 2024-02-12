@@ -2,7 +2,7 @@ import React, { SyntheticEvent, useState } from "react"
 import OpenAI from "openai"
 import Image from "next/image"
 import Header from "../Components/Header"
-import { useRouter } from "next/router"
+import useNavigation from "@/pages/api/src/Hooks/Navigation"
 import { useUser } from "@auth0/nextjs-auth0/client"
 import { ClipLoader } from "react-spinners"
 
@@ -15,8 +15,8 @@ function Chat() {
     name?: string
   }
 
-  const router = useRouter()
   const { user } = useUser()
+  const { navigateToChatSuccess } = useNavigation()
 
   const isAxiosError = (error: any): error is import("axios").AxiosError => {
     return (error as import("axios").AxiosError)?.isAxiosError === true
@@ -88,7 +88,7 @@ function Chat() {
       if (fetchResponse.ok) {
         console.log("Summary uploaded successfully")
         console.log(fetchResponse)
-        router.push("../Home/Home")
+        navigateToChatSuccess()
       } else {
         console.error("Failed to upload summary")
       }

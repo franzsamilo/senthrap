@@ -23,6 +23,10 @@ export default function useNavigation() {
     router.push("/screens/MoodLog/MoodUploadSuccess")
   }
 
+  function navigateToChatSuccess() {
+    router.push("/screens/AIChat/ChatSuccess")
+  }
+
   function navigateToStats() {
     router.push("/screens/Stats/Stats")
   }
@@ -33,6 +37,7 @@ export default function useNavigation() {
     navigateToChat,
     navigateToMoodLog,
     navigateToMoodUploadSuccess,
+    navigateToChatSuccess,
     navigateToStats,
   }
 }
