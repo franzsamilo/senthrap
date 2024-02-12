@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react"
+import React, { SyntheticEvent, useCallback, useEffect, useState } from "react"
 import OpenAI from "openai"
 import Image from "next/image"
 import Header from "../Components/Header"
@@ -21,21 +21,72 @@ function Chat() {
     return (error as import("axios").AxiosError)?.isAxiosError === true
   }
 
-  const [conversationHistory, setConversationHistory] = useState<Message[]>([
-    {
-      role: "system",
-      content:
-        "Hello, I'm in need of someone to talk to, and fortunately, you are also a friendly mental health doctor. I could use some support and guidance right now. Can we chat about how I'm feeling and explore some ways to improve my mental well-being? But just be casual with just like a friend.",
-    },
-  ])
   const [inputMessage, setInputMessage] = useState("")
 
   const [isLoading, setIsLoading] = useState(false)
+
+  const [isEndingSession, setIsEndingSession] = useState(false)
 
   const openai = new OpenAI({
     apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true,
   })
+
+  const [conversationHistory, setConversationHistory] = useState<Message[]>([])
+
+  const fetchAndSetHistory = useCallback(async () => {
+    const fetchLatestConversationHistory = async () => {
+      if (!user) {
+        console.error("User not authenticated")
+        return
+      } else {
+        console.log("User authenticated.")
+      }
+
+      try {
+        const response = await fetch("/api/uploadSummary", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+
+        if (response.ok) {
+          const data = await response.json()
+          // console.log("Data from API:", data.summary_content)
+          return data.summary_content
+        } else {
+          throw new Error(
+            `Failed to fetch latest conversation history: ${response.status}`
+          )
+        }
+      } catch (error) {
+        console.error("Error fetching conversation history: ", error)
+      }
+    }
+
+    const history = await fetchLatestConversationHistory()
+    if (history) {
+      setConversationHistory([
+        {
+          role: "system",
+          content: history,
+        },
+      ])
+    } else {
+      setConversationHistory([
+        {
+          role: "system",
+          content:
+            "Hello, I'm in need of someone to talk to, and fortunately, you are also a friendly mental health doctor. I could use some support and guidance right now. Can we chat about how I'm feeling and explore some ways to improve my mental well-being? But just be casual with just like a friend.",
+        },
+      ])
+    }
+  }, [user])
+
+  useEffect(() => {
+    fetchAndSetHistory()
+  }, [fetchAndSetHistory])
 
   const summarizeConversation = async (
     conversationHistory: Message[]
@@ -58,38 +109,48 @@ function Chat() {
     console.log(response.choices[0]?.message?.content?.trim() ?? "")
     return response.choices[0]?.message?.content?.trim() ?? ""
   }
+
   const endSession = async (e: SyntheticEvent) => {
     e.preventDefault()
+    setIsEndingSession(true)
 
     if (!user) {
       console.error("User not authenticated")
+      setIsEndingSession(false)
       return
     }
 
-    const summary = await summarizeConversation(conversationHistory)
+    try {
+      const summary = await summarizeConversation(conversationHistory)
 
-    const fetchResponse = await fetch("/api/uploadSummary", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        summary_content: summary,
-        user_id: user.sub,
-      }),
-    })
+      const fetchResponse = await fetch("/api/uploadSummary", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          summary_content: summary,
+          user_id: user.sub,
+        }),
+      })
 
-    if (fetchResponse.ok) {
-      console.log("Summary uploaded successfully")
-      console.log(fetchResponse)
-      router.push("../Home/Home")
-    } else {
-      console.error("Failed to upload summary")
+      if (fetchResponse.ok) {
+        console.log("Summary uploaded successfully")
+        console.log(fetchResponse)
+        router.push("../Home/Home")
+      } else {
+        console.error("Failed to upload summary")
+      }
+    } catch (error) {
+      console.error("Error:", (error as Error).message)
+    } finally {
+      setIsEndingSession(false)
     }
   }
 
   const handleSendMessage = async (event: React.FormEvent) => {
     event.preventDefault()
+    setInputMessage("")
     setIsLoading(true)
 
     const inputMessages = [
@@ -137,13 +198,13 @@ function Chat() {
   }
 
   return (
-    <section className="flex flex-col h-screen">
+    <section className="flex flex-col h-screen bg-senthrap-blue-100">
       <Header />
-      <main className="flex flex-col justify-end items-center overflow-y-auto bg-senthrap-blue-100 h-full">
+      <main className="flex flex-col justify-end items-center overflow-y-auto  h-full">
         <div className="chat-container mx-2 py-4 overflow-y-auto">
           <div className="flex justify-center items-center mb-6">
             <div className="text-center">
-              {"I'm here for you. Feel free to talk to me."}
+              {"You can ask me for advice. Feel free to do so."}
             </div>
           </div>
           <div className="flex flex-col">
@@ -164,9 +225,12 @@ function Chat() {
             {isLoading && <div className="self-center">Loading...</div>}
             <button
               onClick={endSession}
-              className="py-3 px-6 bg-senthrap-yellow-100 rounded-lg mb-2"
+              className={`py-3 px-6 rounded-lg mb-2 ${
+                isEndingSession ? "bg-gray-300" : "bg-senthrap-yellow-100"
+              }`}
+              disabled={isEndingSession}
             >
-              End Session
+              {isEndingSession ? "Ending Session..." : "End Session"}
             </button>
           </div>
         </div>
@@ -178,6 +242,7 @@ function Chat() {
             className="w-5/6 mx-2 bg-senthrap-neutral-100 p-4 rounded-lg outline-none"
             onChange={(e) => setInputMessage(e.target.value)}
             placeholder="Type your message..."
+            value={inputMessage}
           />
           <div className="w-1/6 flex justify-center">
             <button className="mr-2" type="submit">
