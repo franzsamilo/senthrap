@@ -12,7 +12,7 @@ function Header() {
   const router = useRouter()
   const [isRadialMenuOpen, setIsRadialMenuOpen] = useState(false)
 
-  const isHomeScreen = router.pathname === "/screens/Home/Home"
+  const isHomeScreen = router.pathname === "/"
 
   function toggleRadialMenu() {
     setIsRadialMenuOpen(!isRadialMenuOpen)
