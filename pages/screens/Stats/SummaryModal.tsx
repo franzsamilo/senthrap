@@ -14,9 +14,16 @@ interface SummaryModalProps {
 export default function SummaryModal(props: SummaryModalProps) {
   const { isOpen, closeFunction } = props
 
-  const [data, setData] = useState<ConversationSummariesData[]>()
+  const [data, setData] = useState<ConversationSummariesData[]>([])
 
-  let userData: ConversationSummariesData[] = []
+  const latestData = data
+    .sort((a, b) => {
+      const timeA = new Date(a.summary_date_and_time).getTime()
+      const timeB = new Date(b.summary_date_and_time).getTime()
+      return timeB - timeA // Sort in descending order
+    })
+    .slice(0, 7)
+
   const { user } = useUser()
   useEffect(() => {
     // Fetch data from API route on page load
@@ -50,7 +57,20 @@ export default function SummaryModal(props: SummaryModalProps) {
           </h1>
           <p></p>
         </div>
-        <div className="flex flex-col bg-white border-4 rounded-lg border-senthrap-blue-200 mt-4 max-h-[calc(100vh-10rem)] overflow-y-auto"></div>
+        <div className="flex flex-col bg-white border-4 rounded-lg border-senthrap-blue-200 mt-4 max-h-[calc(100vh-10rem)] overflow-y-auto">
+          {latestData.map((item, index) => (
+            <div key={index} className="flex-col flex py-2 justify-between p-2">
+              <div className="w-8">
+                <p className="font-bold">
+                  {new Date(item.summary_date_and_time).toLocaleString()}
+                </p>
+              </div>
+              <div className="">
+                <p className="font-semibold">{item.summary_content}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </Modal>
   )

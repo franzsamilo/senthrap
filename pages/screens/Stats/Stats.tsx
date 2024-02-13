@@ -39,7 +39,6 @@ function Stats() {
     }
   }
 
-  let userData: MoodData[] = []
   const { user } = useUser()
   useEffect(() => {
     // Fetch data from API route on page load
@@ -112,7 +111,6 @@ function Stats() {
       />
       <SummaryModal
         closeFunction={handleMoodSummaryHistory}
-        data={[]}
         isOpen={isMoodSummaryHistoryOpen}
       />
       <div className="flex flex-col min-h-screen w-screen bg-senthrap-blue-100">
@@ -195,7 +193,10 @@ function Stats() {
                 Mood Log History
               </h3>
             </button>
-            <button className="border-[5px] border-senthrap-blue-200 bg-senthrap-blue-10 w-5/12 rounded-xl mr-8 ml-2 items-center justify-center">
+            <button
+              className="border-[5px] border-senthrap-blue-200 bg-senthrap-blue-10 w-5/12 rounded-xl mr-8 ml-2 items-center justify-center"
+              onClick={handleMoodSummaryHistory}
+            >
               <h3 className="text-white font-bold text-2xl">Summary History</h3>
             </button>
           </div>
