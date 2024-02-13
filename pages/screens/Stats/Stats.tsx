@@ -6,13 +6,7 @@ import { DocumentData } from "firebase/firestore"
 import { moodMap } from "@/constant/enums/moodMap"
 import Modal from "react-modal"
 import HistoryModal from "./HistoryModal"
-
-interface MoodData {
-  mood_value: string
-  mood_log_upload_time: string
-  mood_log_content: string
-  user_id: string
-}
+import MoodData from "@/pages/api/src/schemas/MoodData"
 
 function Stats() {
   const [data, setData] = useState<MoodData[]>()
@@ -102,6 +96,7 @@ function Stats() {
     <>
       <HistoryModal
         closeFunction={handleMoodLogHistory}
+        data={data || []}
         isOpen={isMoodLogHistoryOpen}
       />
       <div className="flex flex-col min-h-screen w-screen bg-senthrap-blue-100">
