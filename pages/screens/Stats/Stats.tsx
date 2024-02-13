@@ -7,6 +7,7 @@ import { moodMap } from "@/constant/enums/moodMap"
 import Modal from "react-modal"
 import HistoryModal from "./HistoryModal"
 import MoodData from "@/pages/api/src/schemas/MoodData"
+import SummaryModal from "./SummaryModal"
 
 function Stats() {
   const [data, setData] = useState<MoodData[]>()
@@ -19,12 +20,22 @@ function Stats() {
   const [latestMoodLog, setLatestMoodLog] = useState("")
 
   const [isMoodLogHistoryOpen, setIsMoodLogHistoryOpen] = useState(false)
+  const [isMoodSummaryHistoryOpen, setIsMoodSummaryHistoryOpen] =
+    useState(false)
 
   function handleMoodLogHistory() {
     if (!isMoodLogHistoryOpen) {
       setIsMoodLogHistoryOpen(true)
     } else {
       setIsMoodLogHistoryOpen(false)
+    }
+  }
+
+  function handleMoodSummaryHistory() {
+    if (!isMoodSummaryHistoryOpen) {
+      setIsMoodSummaryHistoryOpen(true)
+    } else {
+      setIsMoodSummaryHistoryOpen(false)
     }
   }
 
@@ -98,6 +109,11 @@ function Stats() {
         closeFunction={handleMoodLogHistory}
         data={data || []}
         isOpen={isMoodLogHistoryOpen}
+      />
+      <SummaryModal
+        closeFunction={handleMoodSummaryHistory}
+        data={[]}
+        isOpen={isMoodSummaryHistoryOpen}
       />
       <div className="flex flex-col min-h-screen w-screen bg-senthrap-blue-100">
         <Header />
