@@ -50,24 +50,29 @@ export default function HistoryModal(props: HistoryModalProps) {
           </h1>
           <p></p>
         </div>
-        <div className="flex flex-col bg-white border-4 rounded-lg border-senthrap-blue-200 mt-4 max-h-[calc(100vh-10rem)] overflow-y-auto">
+        <div className="flex flex-col border-4 rounded-lg bg-senthrap-blue-50 border-senthrap-blue-200 mt-4 max-h-[calc(100vh-10rem)] overflow-y-auto">
           {latestData.map((item, index) => (
-            <div key={index} className="flex-col flex py-2 justify-between p-2">
-              <div className="w-8">
-                <p className="font-bold">
+            <div
+              key={index}
+              className="flex-col flex py-2 justify-between p-2 border-4 border-senthrap-blue-200 m-3 bg-white rounded-lg items-center"
+            >
+              <div className="border-4 w-7/12 rounded-lg items-center px-4 border-senthrap-blue-200 justify-center flex flex-row">
+                <p className="font-bold font-xs">
                   {new Date(item.mood_log_upload_time).toLocaleString()}
                 </p>
               </div>
-              <div className="min-w-6">
-                <Image
-                  src={moodIconCheck(item.mood_value)}
-                  alt="Loading.."
-                  width={24}
-                  height={24}
-                />
-              </div>
-              <div className="">
-                <p className="font-semibold">{item.mood_log_content}</p>
+              <div className="flex flex-row items-center">
+                <div className="min-w-24">
+                  <Image
+                    src={moodIconCheck(item.mood_value)}
+                    alt="Loading.."
+                    width={50}
+                    height={50}
+                  />
+                </div>
+                <div className="items-center p-4">
+                  <p className="font-semibold">{item.mood_log_content}</p>
+                </div>
               </div>
             </div>
           ))}
