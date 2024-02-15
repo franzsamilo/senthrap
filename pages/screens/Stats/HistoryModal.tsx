@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Modal from "react-modal"
 import { IoArrowBackSharp } from "react-icons/io5"
 import MoodData from "@/pages/api/src/schemas/MoodData"
@@ -14,13 +14,17 @@ interface HistoryModalProps {
 export default function HistoryModal(props: HistoryModalProps) {
   const { isOpen, closeFunction, data } = props
 
-  const latestData = data
-    .sort((a, b) => {
-      const timeA = new Date(a.mood_log_upload_time).getTime()
-      const timeB = new Date(b.mood_log_upload_time).getTime()
-      return timeB - timeA // Sort in descending order
-    })
-    .slice(0, 5)
+  const [latestData, setLatestData] = useState<MoodData[]>([])
+  useEffect(() => {
+    const latestData = data
+      .sort((a, b) => {
+        const timeA = new Date(a.mood_log_upload_time).getTime()
+        const timeB = new Date(b.mood_log_upload_time).getTime()
+        return timeB - timeA // Sort in descending order
+      })
+      .slice(0, 5)
+    setLatestData(latestData)
+  }, [data])
 
   function moodIconCheck(mood: string) {
     if (mood === moodMap.HAPPY) {
