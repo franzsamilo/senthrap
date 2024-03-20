@@ -47,7 +47,11 @@ function Chat() {
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
-        { role: "system", content: "You are a helpful assistant." },
+        {
+          role: "system",
+          content:
+            "you are a helpful mental heath assistant who gives specific and helpful suggestions and also write in paragraph form.",
+        },
         {
           role: "user",
           content: `Please summarize the following text:\n${fullText}\n\nSummary:`,
