@@ -28,14 +28,6 @@ function ActivityLog() {
                     Cancel
                   </button>
                 </div>
-                <div className="mx-3 bg-senthrap-blue-100 hover:bg-senthrap-blue-200 rounded-xl">
-                  <button
-                    onClick={() => null}
-                    className="text-white hover:text-senthrap-blue-10 px-6 py-2 font-medium"
-                  >
-                    Submit
-                  </button>
-                </div>
               </div>
             </div>
           )}
