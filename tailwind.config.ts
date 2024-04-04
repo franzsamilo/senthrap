@@ -29,6 +29,21 @@ const config: Config = {
           yellow: {
             "100": "#FFFABE",
           },
+          // new colors
+          "new-blue": {
+            "light": "#E1F1FF",
+            "stroke": "#BEBED9",
+            "dark": "#2E2E7D"
+          },
+          "new-yellow": {
+            "light": "#FDFFE1",
+            "stroke": "#D5D9BE",
+            "heavy": "#FFFAD6"
+          },
+          "new-white": {
+            "bg": "#FEFFE7",
+            "stroke": "E8E9D2"
+          }
         },
       },
     },
