@@ -153,9 +153,9 @@ function Chat() {
   }
 
   return (
-    <section className="flex flex-col h-screen bg-senthrap-blue-100">
+    <section className="flex flex-col h-screen bg-senthrap-new-white-bg">
       <Header />
-      <main className="flex flex-col justify-end items-center overflow-y-auto  h-full">
+      <main className="flex flex-col justify-end items-center overflow-y-auto h-full">
         <div className="chat-container mx-2 py-4 overflow-y-auto">
           <div className="flex justify-center items-center mb-6">
             <div className="text-center">
@@ -170,8 +170,8 @@ function Chat() {
                   key={index}
                   className={`message ${
                     message.role === "user"
-                      ? "bg-gray-200 text-right ml-auto max-w-[80%]"
-                      : "bg-gray-300 text-left max-w-[80%]"
+                      ? "bg-senthrap-new-blue-light border border-bg-senthrap-new-blue-stroke text-senthrap-new-blue-dark font-medium text-right ml-auto max-w-[80%]"
+                      : "bg-senthrap-new-yellow-light border border-bg-senthrap-new-yellow-stroke text-senthrap-new-blue-dark font-medium text-left max-w-[80%]"
                   } rounded-lg p-2 mb-2`}
                 >
                   <span>{message.content}</span>
@@ -212,15 +212,15 @@ function Chat() {
           onSubmit={handleSendMessage}
         >
           <input
-            className="w-5/6 mx-2 bg-senthrap-neutral-100 p-4 rounded-lg outline-none"
+            className="text-senthrap-new-blue-dark border border-bg-senthrap-new-white-stroke w-5/6 mx-2 p-4 rounded-lg outline-none"
             onChange={(e) => setInputMessage(e.target.value)}
-            placeholder="Type your message..."
+            placeholder="How are you feeling?"
             value={inputMessage}
           />
           <div className="w-1/6 flex justify-center">
             <button className="mr-2" type="submit">
               <Image
-                src="/assets/svg's/material-symbols_send.svg"
+                src="/assets/svg's/lets-icons_send-hor.svg"
                 alt="Mood Icon"
                 width={42}
                 height={42}
