@@ -8,7 +8,7 @@ export default function useNavigation() {
   }
 
   function navigateToChat() {
-    router.push("/screens/AIChat/HomeChat")
+    router.push("/screens/AIChat/Chat")
   }
 
   function navigateToMoodLog() {

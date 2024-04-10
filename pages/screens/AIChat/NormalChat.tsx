@@ -24,9 +24,9 @@ function Chat() {
 
   const [conversationHistory, setConversationHistory] = useState<Message[]>([
     {
-      role: "system",
-      content:
-        "Hello, I'm in need of someone to talk to, and fortunately, you are also a friendly mental health doctor. I could use some support and guidance right now. Can we chat about how I'm feeling and explore some ways to improve my mental well-being? But just be casual with just like a friend.",
+      role: "user",
+      content: "You are Megatron!",
+      //"Hello, I'm in need of someone to talk to, and fortunately, you are also a friendly mental health doctor. I could use some support and guidance right now. Can we chat about how I'm feeling and explore some ways to improve my mental well-being? But just be casual with just like a friend.",
     },
   ])
   const [inputMessage, setInputMessage] = useState("")
@@ -48,13 +48,8 @@ function Chat() {
       model: "gpt-3.5-turbo",
       messages: [
         {
-          role: "system",
-          content:
-            "you are a helpful mental heath assistant who gives specific and helpful suggestions and also write in paragraph form.",
-        },
-        {
           role: "user",
-          content: `Please summarize the following text:\n${fullText}\n\nSummary:`,
+          content: `You are a helpful mental heath assistant who gives specific and helpful suggestions and also write in paragraph form. Please summarize the following text:\n${fullText}\n\nSummary:`,
         },
       ],
       temperature: 0.5,
