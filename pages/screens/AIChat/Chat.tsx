@@ -15,6 +15,7 @@ function Chat() {
   const [chatLog, setChatLog] = useState<Message[]>([])
   const [inputMessage, setInputMessage] = useState("")
 
+  // This is for the auto-resizing function of the textarea input
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -26,6 +27,7 @@ function Chat() {
 
   const [isLoading, setIsLoading] = useState(false)
 
+  // This engages the system prompt
   useEffect(() => {
     setChatLog([
       {
@@ -98,6 +100,9 @@ function Chat() {
     <main className="flex flex-col h-screen bg-senthrap-new-white-bg">
       <section className="flex flex-col justify-end items-center h-full">
         <div className="flex flex-col w-full px-2 py-2 overflow-y-auto">
+          <div className="bg-senthrap-new-yellow-light border border-bg-senthrap-new-yellow-stroke text-senthrap-new-blue-dark font-medium text-left mr-auto max-w-[80%] rounded-lg p-2 mb-2">
+            Hey there, feel free to talk to me. I&apos;m here for you.
+          </div>
           {chatLog
             .filter((message) => message.role !== "system")
             .map((message, index) => (
@@ -109,7 +114,10 @@ function Chat() {
                     : "bg-senthrap-new-yellow-light border border-bg-senthrap-new-yellow-stroke text-senthrap-new-blue-dark font-medium text-left mr-auto max-w-[80%]"
                 } rounded-lg p-2 mb-2`}
               >
-                <ReactMarkdown className="prose" remarkPlugins={[remarkGfm]}>
+                <ReactMarkdown
+                  className="text-senthrap-new-blue-dark prose"
+                  remarkPlugins={[remarkGfm]}
+                >
                   {message.content}
                 </ReactMarkdown>
               </div>
@@ -130,7 +138,7 @@ function Chat() {
         onSubmit={handleSendMessage}
       >
         <textarea
-          className="w-5/6 font-medium overflow-hidden text-senthrap-new-blue-dark border border-senthrap-new-blue-stroke mr-2 p-4 rounded-lg focus:outline-none"
+          className="focus:border-senthrap-new-blue-dark w-5/6 font-medium overflow-hidden text-senthrap-new-blue-dark border border-senthrap-new-blue-stroke mr-2 p-4 rounded-lg focus:outline-none"
           onChange={(event) => setInputMessage(event.target.value)}
           ref={textAreaRef}
           placeholder="How are you feeling?"
