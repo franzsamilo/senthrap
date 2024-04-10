@@ -31,19 +31,19 @@ const config: Config = {
           },
           // new colors
           "new-blue": {
-            "light": "#E1F1FF",
-            "stroke": "#BEBED9",
-            "dark": "#2E2E7D"
+            light: "#E1F1FF",
+            stroke: "#BEBED9",
+            dark: "#2E2E7D",
           },
           "new-yellow": {
-            "light": "#FDFFE1",
-            "stroke": "#D5D9BE",
-            "heavy": "#FFFAD6"
+            light: "#FDFFE1",
+            stroke: "#D5D9BE",
+            heavy: "#FFFAD6",
           },
           "new-white": {
-            "bg": "#FEFFE7",
-            "stroke": "E8E9D2"
-          }
+            bg: "#FEFFE7",
+            stroke: "E8E9D2",
+          },
         },
       },
     },

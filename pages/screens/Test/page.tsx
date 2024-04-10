@@ -1,6 +1,6 @@
 // IMPORTANT, USE THIS FOR YOUR BASIS OF SENDING DATA TO FIREBASE
-import React from "react"
 import { SyntheticEvent, useState } from "react"
+import NavigationBar from "../Components/NavigationBar"
 
 export default function YourComponent() {
   const [key1, setKey1] = useState("")
@@ -28,6 +28,7 @@ export default function YourComponent() {
 
   return (
     <form onSubmit={handleSubmit}>
+      <NavigationBar />
       <label>
         Key 1:
         <input
