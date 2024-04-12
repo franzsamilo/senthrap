@@ -1,10 +1,20 @@
 // IMPORTANT, USE THIS FOR YOUR BASIS OF SENDING DATA TO FIREBASE
 import React from "react"
 import { SyntheticEvent, useState } from "react"
+import Dropdown from "../Components/Dropdown"
+import CurrentDateCalendar from "../Components/Calendar"
+import HomeMoodLogChecker from "../Components/HomeMoodLogChecker"
 
 export default function YourComponent() {
   const [key1, setKey1] = useState("")
   const [key2, setKey2] = useState("")
+
+  const options = [
+    { value: "React", label: "React" },
+    { value: "Vue", label: "Vue" },
+    { value: "Angular", label: "Angular" },
+    { value: "Java", label: "Java" },
+  ]
 
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault()
@@ -27,26 +37,10 @@ export default function YourComponent() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Key 1:
-        <input
-          type="text"
-          value={key1}
-          onChange={(e) => setKey1(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Key 2:
-        <input
-          type="text"
-          value={key2}
-          onChange={(e) => setKey2(e.target.value)}
-        />
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+    <div>
+      <HomeMoodLogChecker />
+      <CurrentDateCalendar />
+      <Dropdown options={options} />
+    </div>
   )
 }
