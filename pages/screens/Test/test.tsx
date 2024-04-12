@@ -4,6 +4,7 @@ import { SyntheticEvent, useState } from "react"
 import Dropdown from "../Components/Dropdown"
 import CurrentDateCalendar from "../Components/Calendar"
 import HomeMoodLogChecker from "../Components/HomeMoodLogChecker"
+import Entry from "../Components/Entry"
 
 export default function YourComponent() {
   const [key1, setKey1] = useState("")
@@ -13,6 +14,10 @@ export default function YourComponent() {
     { value: "React", label: "React" },
     { value: "Vue", label: "Vue" },
     { value: "Angular", label: "Angular" },
+    { value: "Java", label: "Java" },
+    { value: "Java", label: "Java" },
+    { value: "Java", label: "Java" },
+    { value: "Java", label: "Java" },
     { value: "Java", label: "Java" },
   ]
 
@@ -38,6 +43,14 @@ export default function YourComponent() {
 
   return (
     <div>
+      <Entry
+        mood="hapi"
+        date="April 12, 2024"
+        activities={["idk", "other"]}
+        symptoms={["idk", "other"]}
+        notes="osteoporosis"
+        advice="go home"
+      />
       <HomeMoodLogChecker />
       <CurrentDateCalendar />
       <Dropdown options={options} />

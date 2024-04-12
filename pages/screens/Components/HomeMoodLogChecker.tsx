@@ -16,7 +16,7 @@ export default function HomeMoodLogChecker() {
   ]
 
   return (
-    <div className="bg-senthrap-new-yellow-heavy py-12 w-11/12 flex flex-col items-center justify-center mx-8 rounded-2xl border border-senthrap-new-yellow-stroke">
+    <div className="bg-senthrap-new-yellow-heavy py-12 w-10/12 flex flex-col items-center justify-center mx-8 rounded-2xl border border-senthrap-new-yellow-stroke">
       <div className="items-center justify-between flex flex-row">
         <p className="font-bold text-senthrap-new-blue-dark text-xl">
           How are you today?
