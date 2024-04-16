@@ -24,7 +24,7 @@ function LatestActivityLogs() {
           .sort(
             (a: ActivityLog, b: ActivityLog) =>
               new Date(b.activity_log_upload_time).getTime() -
-              new Date(a.activity_log_upload_time).getTime()
+              new Date(a.activity_log_upload_time).getTime() 
           )
           .slice(0, 3)
         setActivityLogs(sortedData)
