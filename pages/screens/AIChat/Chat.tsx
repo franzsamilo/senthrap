@@ -8,12 +8,19 @@ import remarkGfm from "remark-gfm"
 import useNavigation from "@/pages/api/src/Hooks/Navigation"
 import { useUser } from "@auth0/nextjs-auth0/client"
 
-function Chat() {
-  const openai = new OpenAI({
-    apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true,
-  })
+let openaiInstance: OpenAI
 
+async function getOpenAIInstance() {
+  if (!openaiInstance) {
+    const { default: OpenAI } = await import("openai")
+    openaiInstance = new OpenAI({
+      apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+      dangerouslyAllowBrowser: true,
+    })
+  }
+  return openaiInstance
+}
+function Chat() {
   const { user } = useUser()
   const { navigateToChatSuccess } = useNavigation()
 
@@ -64,6 +71,7 @@ function Chat() {
     setInputMessage("")
 
     try {
+      const openai = await getOpenAIInstance()
       const openaiCompletion = await openai.chat.completions.create({
         model: "gpt-3.5-turbo-0125",
         temperature: 0.75,
@@ -118,6 +126,7 @@ function Chat() {
   // Summarizing chat logs via "End Session" button
   const summarizeConversation = async (chatLog: Message[]): Promise<string> => {
     const fullText = chatLog.map((msg) => msg.content).join("\n")
+    const openai = await getOpenAIInstance() // Use the getOpenAIInstance function to get the openai instance
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
@@ -125,9 +134,10 @@ function Chat() {
           role: "user",
           // This part you can also customize the prompt on how it would summarize
           content: `You are a helpful mental health assistant who gives specific and helpful suggestions and also writes in paragraph form. Please summarize the following text:\n
-            ${fullText}\n`,
+          ${fullText}\n`,
         },
       ],
+      // 0 means more technical; 1 means more creative/free
       // 0 means more technical; 1 means more creative/free
       temperature: 0.5,
       // limit on how many it will tokens/characters it will read before summarizing
