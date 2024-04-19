@@ -7,6 +7,7 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import useNavigation from "@/pages/api/src/Hooks/Navigation"
 import { useUser } from "@auth0/nextjs-auth0/client"
+import NewHeader from "../Components/NewHeader"
 
 let openaiInstance: OpenAI
 
@@ -187,11 +188,20 @@ function Chat() {
   }
 
   return (
-    <main className="flex flex-col h-screen bg-senthrap-new-white-bg">
+    <main className="flex flex-col w-screen h-screen items-center bg-senthrap-new-white-bg">
       <section className="flex flex-col justify-end items-center h-full">
+        <div className="flex flex-col bg-senthrap-new-white-bg w-screen items-center fixed top-0 shadow-md">
+          <Image
+            src="/assets/senthrap-text-logo.png"
+            alt={""}
+            width={100}
+            height={0}
+            className="rounded-lg"
+          />
+        </div>
         <div className="flex flex-col w-full px-2 py-2 overflow-y-auto">
           <Image
-            src="/assets/senthrap-logo-no-bg.png"
+            src="/assets/sennie.png"
             alt="SAM PUT SENNIE IMAGE HERE"
             width={32}
             height={32}
@@ -223,7 +233,7 @@ function Chat() {
                 ) : (
                   <div className="flex flex-col items-start">
                     <Image
-                      src="/assets/senthrap-logo-no-bg.png"
+                      src="/assets/sennie.png"
                       alt="SAM PUT SENNIE IMAGE HERE"
                       width={32}
                       height={32}
