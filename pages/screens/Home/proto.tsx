@@ -22,11 +22,15 @@ function Home() {
   }
 
   return (
-    <div className="bg-senthrap-new-yellow-light justify-center items-center flex flex-col">
-      <p className="font-bold text-senthrap-new-blue-dark text-xl pt-4">LOGO</p>
-      <CurrentDateCalendar />
-      <HomeMoodLogChecker />
-      <NavigationBar />
+    <div className="bg-senthrap-new-yellow-light">
+      <div className=" justify-center items-center flex flex-col mb-8">
+        <p className="font-bold text-senthrap-new-blue-dark text-xl pt-4">
+          LOGO
+        </p>
+        <CurrentDateCalendar />
+        <HomeMoodLogChecker />
+        <NavigationBar />
+      </div>
     </div>
   )
 }

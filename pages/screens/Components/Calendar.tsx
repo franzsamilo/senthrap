@@ -1,5 +1,7 @@
 import React from "react"
 import { DayPicker, ClassNames } from "react-day-picker"
+import { useRouter } from "next/router"
+import useNavigation from "@/pages/api/src/Hooks/Navigation"
 
 export default function CurrentDateCalendar() {
   const currentDate = new Date()
@@ -13,9 +15,11 @@ export default function CurrentDateCalendar() {
     },
   }
 
+  const { navigateToEntries } = useNavigation()
+
   return (
     <div className="mx-auto max-w-max mt-8">
-      <button>View Entries &gt;</button>
+      <button onClick={navigateToEntries}>View Entries &gt;</button>
       <DayPicker
         selected={currentDate}
         styles={{

@@ -3,12 +3,16 @@ import { useRouter } from "next/router"
 export default function useNavigation() {
   const router = useRouter()
 
+  function navigateToEntries() {
+    router.push("/screens/Entries/Entries")
+  }
+
   function navigateToHome() {
     router.push("/screens/Home/Home")
   }
 
   function navigateToChat() {
-    router.push("/screens/AIChat/HomeChat")
+    router.push("/screens/AIChat/Chat")
   }
 
   function navigateToMoodLog() {
