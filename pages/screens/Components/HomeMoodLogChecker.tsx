@@ -1,19 +1,52 @@
-import React from "react"
+import React, { SyntheticEvent, useState } from "react"
 import Image from "next/image"
 import Dropdown from "./Dropdown"
+import DropdownRow from "@/constant/schemas/DropdownRow"
+import { useUser } from "@auth0/nextjs-auth0/client"
 
 export default function HomeMoodLogChecker() {
-  const [content, setContent] = React.useState("")
+  const { user } = useUser()
+
+  const [content, setContent] = useState("")
+  const [mood, setMood] = useState<Number>(0)
+  const [selectedActivity, setSelectedActivity] = useState<DropdownRow[]>([])
+  const [selectedSymptoms, setSelectedSymptoms] = useState<DropdownRow[]>([])
+
   const options = [
     { value: "React", label: "React" },
     { value: "Vue", label: "Vue" },
     { value: "Angular", label: "Angular" },
     { value: "Java", label: "Java" },
-    { value: "Java", label: "Java" },
-    { value: "Java", label: "Java" },
-    { value: "Java", label: "Java" },
-    { value: "Java", label: "Java" },
   ]
+
+  async function handleSubmit(e: SyntheticEvent) {
+    e.preventDefault()
+
+    if (!user) {
+      console.error("User not authenticated")
+      return
+    }
+
+    const response = await fetch("/api/uploadEntry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        entry_mood: mood,
+        entry_activity: selectedActivity.map((activity) => activity.value),
+        entry_symptoms: selectedSymptoms.map((symptom) => symptom.value),
+        entry_content: content,
+        user_id: user.sub,
+      }),
+    })
+
+    if (response.ok) {
+      console.log("Entry uploaded successfully")
+    } else {
+      console.error("Failed to upload entry")
+    }
+  }
 
   return (
     <div className="bg-senthrap-new-yellow-heavy py-12 w-10/12 flex flex-col items-center justify-center mx-8 rounded-2xl border border-senthrap-new-yellow-stroke">
@@ -25,7 +58,11 @@ export default function HomeMoodLogChecker() {
       <div className="flex flex-row justify-between w-3/5">
         <p className="font-bold text-senthrap-new-blue-dark text-base">Mood</p>
         <div className="flex flex-row justify-between">
-          <button>
+          <button
+            onClick={() => {
+              setMood(1)
+            }}
+          >
             <Image
               src="/assets/svg's/moods/Mood1.svg"
               alt="Mood Icon1"
@@ -33,7 +70,11 @@ export default function HomeMoodLogChecker() {
               height={20}
             />
           </button>
-          <button>
+          <button
+            onClick={() => {
+              setMood(2)
+            }}
+          >
             <Image
               src="/assets/svg's/moods/Mood2.svg"
               alt="Mood Icon2"
@@ -41,7 +82,11 @@ export default function HomeMoodLogChecker() {
               height={20}
             />
           </button>
-          <button>
+          <button
+            onClick={() => {
+              setMood(3)
+            }}
+          >
             <Image
               src="/assets/svg's/moods/Mood3.svg"
               alt="Mood Icon3"
@@ -49,7 +94,11 @@ export default function HomeMoodLogChecker() {
               height={20}
             />
           </button>
-          <button>
+          <button
+            onClick={() => {
+              setMood(4)
+            }}
+          >
             <Image
               src="/assets/svg's/moods/Mood4.svg"
               alt="Mood Icon4"
@@ -57,7 +106,11 @@ export default function HomeMoodLogChecker() {
               height={20}
             />
           </button>
-          <button>
+          <button
+            onClick={() => {
+              setMood(5)
+            }}
+          >
             <Image
               src="/assets/svg's/moods/Mood5.svg"
               alt="Mood Icon5"
@@ -71,13 +124,23 @@ export default function HomeMoodLogChecker() {
         <p className="font-bold text-senthrap-new-blue-dark text-base">
           Activity
         </p>
-        <Dropdown options={options} className="max-h-auto max-w-40" />
+        <Dropdown
+          selected={selectedActivity}
+          setSelected={setSelectedActivity}
+          options={options}
+          className="max-h-auto max-w-40"
+        />
       </div>
       <div className="flex-row flex pt-4 justify-between items-center w-3/5">
         <p className="font-bold text-senthrap-new-blue-dark text-base">
           Symptoms
         </p>
-        <Dropdown options={[]} />
+        <Dropdown
+          selected={selectedSymptoms}
+          setSelected={setSelectedSymptoms}
+          options={options}
+          className="max-h-auto max-w-40"
+        />
       </div>
       <div className="flex-row flex pt-4 justify-between items-center w-3/5">
         <p className="font-bold text-senthrap-new-blue-dark text-base">Notes</p>
@@ -90,7 +153,10 @@ export default function HomeMoodLogChecker() {
           onChange={(e) => setContent(e.target.value)}
         />
       </div>
-      <button className="border border-senthrap-new-yellow-stroke bg-senthrap-new-yellow-light rounded-2xl mt-4">
+      <button
+        className="border border-senthrap-new-yellow-stroke bg-senthrap-new-yellow-light rounded-2xl mt-4"
+        onClick={handleSubmit}
+      >
         <p className="font-bold text-senthrap-new-blue-dark text-base px-8 py-2">
           Submit
         </p>

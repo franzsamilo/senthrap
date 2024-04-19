@@ -44,7 +44,7 @@ export default function YourComponent() {
   return (
     <div>
       <Entry
-        mood="hapi"
+        mood={1}
         date="April 12, 2024"
         activities={["idk", "other"]}
         symptoms={["idk", "other"]}
@@ -53,7 +53,6 @@ export default function YourComponent() {
       />
       <HomeMoodLogChecker />
       <CurrentDateCalendar />
-      <Dropdown options={options} />
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import Image from "next/image"
 
 interface EntryProps {
-  mood: string
+  mood: number
   date: string
   activities: string[]
   symptoms: string[]

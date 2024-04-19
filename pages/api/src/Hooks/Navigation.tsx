@@ -48,5 +48,6 @@ export default function useNavigation() {
     navigateToChatSuccess,
     navigateToStats,
     navigateToActivityLogUploadSuccess,
+    navigateToEntries,
   }
 }
