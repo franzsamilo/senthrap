@@ -7,7 +7,7 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import useNavigation from "@/pages/api/src/Hooks/Navigation"
 import { useUser } from "@auth0/nextjs-auth0/client"
-import NewHeader from "../Components/NewHeader"
+import NavigationBar from "../Components/NavigationBar"
 
 let openaiInstance: OpenAI
 
@@ -49,7 +49,7 @@ function Chat() {
       {
         role: "system",
         content: `
-  You're Sennie, a friendly, quirky, fun, and casual mental health doctor that likes to list out activities on the fly. You tend to lead your replies with comforting and sweet messages, and use absurd amounts of emoji to express, like chatting with a friend, you.
+  You're Sennie, a friendly, quirky, fun, and casual mental health doctor that likes to list out activities on the fly. You tend to lead your replies with comforting and sweet messages, and use absurd amounts of emoji to express, like chatting with a friend.
 
   By the way, here's a handy tip for clarity and readability: use Markdown formatting! It's a breeze to follow and makes our chats even better but don't overuse them!
 
@@ -139,7 +139,6 @@ function Chat() {
         },
       ],
       // 0 means more technical; 1 means more creative/free
-      // 0 means more technical; 1 means more creative/free
       temperature: 0.5,
       // limit on how many it will tokens/characters it will read before summarizing
       max_tokens: 1024,
@@ -188,122 +187,125 @@ function Chat() {
   }
 
   return (
-    <main className="flex flex-col w-screen h-screen items-center bg-senthrap-new-white-bg">
-      <section className="flex flex-col justify-end items-center h-full">
-        <div className="flex flex-col bg-senthrap-new-white-bg w-screen items-center fixed top-0 shadow-md">
-          <Image
-            src="/assets/senthrap-text-logo.png"
-            alt={""}
-            width={100}
-            height={0}
-            className="rounded-lg"
-          />
-        </div>
-        <div className="flex flex-col w-full px-2 py-2 overflow-y-auto">
-          <Image
-            src="/assets/sennie.png"
-            alt="SAM PUT SENNIE IMAGE HERE"
-            width={32}
-            height={32}
-            className="rounded-full mb-2 bg-senthrap-new-blue-light"
-          />
-          <div className="bg-senthrap-new-yellow-light border border-bg-senthrap-new-yellow-stroke text-senthrap-new-blue-dark font-medium text-left mr-auto max-w-[80%] rounded-lg p-2 mb-2">
-            Hey there, feel free to talk to me. I&apos;m here for you.
+    <>
+      <main className="flex flex-col w-screen h-screen items-center bg-senthrap-new-white-bg">
+        <section className="flex flex-col justify-end items-center h-full">
+          <div className="flex flex-col bg-senthrap-new-white-bg w-screen items-center fixed top-0 shadow-md">
+            <Image
+              src="/assets/senthrap-text-logo.png"
+              alt={""}
+              width={100}
+              height={0}
+              className="rounded-lg"
+            />
           </div>
-          {chatLog
-            .filter((message) => message.role !== "system")
-            .map((message, index) => (
-              <div key={index}>
-                {message.role === "user" ? (
-                  <div className="flex flex-col items-end">
-                    <Image
-                      src={user?.picture || ""}
-                      alt={user?.name || ""}
-                      width={32}
-                      height={32}
-                      className="rounded-full mb-2"
-                    />
-                    <ReactMarkdown
-                      className="bg-senthrap-new-blue-light border border-bg-senthrap-new-blue-stroke text-senthrap-new-blue-dark font-medium text-right ml-auto max-w-[80%] rounded-lg p-2 mb-2"
-                      remarkPlugins={[remarkGfm]}
-                    >
-                      {message.content}
-                    </ReactMarkdown>
-                  </div>
-                ) : (
-                  <div className="flex flex-col items-start">
-                    <Image
-                      src="/assets/sennie.png"
-                      alt="SAM PUT SENNIE IMAGE HERE"
-                      width={32}
-                      height={32}
-                      className="rounded-full mb-2 bg-senthrap-new-blue-light"
-                    />
-                    <ReactMarkdown
-                      className="bg-senthrap-new-yellow-light border border-bg-senthrap-new-yellow-stroke text-senthrap-new-blue-dark font-medium text-left mr-auto max-w-[80%] rounded-lg p-2 mb-2"
-                      remarkPlugins={[remarkGfm]}
-                    >
-                      {message.content}
-                    </ReactMarkdown>
-                  </div>
-                )}
-              </div>
-            ))}
-        </div>
-        <div className="self-center">
-          <ClipLoader
-            color={"#2E2E7D"}
-            loading={isLoading}
-            size={50}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        </div>
-        <button
-          onClick={endSession}
-          className={` ${
-            isEndingSession
-              ? ""
-              : "rounded-lg text-xs py-2 px-4 border border-senthrap-new-blue-dark file:rounded-lg mb-2 font-medium text-senthrap-new-blue-dark bg-senthrap-new-blue-light"
-          }`}
-          disabled={isEndingSession}
-        >
-          {isEndingSession ? (
+          <div className="flex flex-col w-full px-2 py-2 overflow-y-auto">
+            <Image
+              src="/assets/sennie.png"
+              alt="SAM PUT SENNIE IMAGE HERE"
+              width={32}
+              height={32}
+              className="rounded-full mb-2 bg-senthrap-new-blue-light"
+            />
+            <div className="bg-senthrap-new-yellow-light border border-bg-senthrap-new-yellow-stroke text-senthrap-new-blue-dark font-medium text-left mr-auto max-w-[80%] rounded-lg p-2 mb-2">
+              Hey there, feel free to talk to me. I&apos;m here for you.
+            </div>
+            {chatLog
+              .filter((message) => message.role !== "system")
+              .map((message, index) => (
+                <div key={index}>
+                  {message.role === "user" ? (
+                    <div className="flex flex-col items-end">
+                      <Image
+                        src={user?.picture || ""}
+                        alt={user?.name || ""}
+                        width={32}
+                        height={32}
+                        className="rounded-full mb-2"
+                      />
+                      <ReactMarkdown
+                        className="bg-senthrap-new-blue-light border border-bg-senthrap-new-blue-stroke text-senthrap-new-blue-dark font-medium text-right ml-auto max-w-[80%] rounded-lg p-2 mb-2"
+                        remarkPlugins={[remarkGfm]}
+                      >
+                        {message.content}
+                      </ReactMarkdown>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-start">
+                      <Image
+                        src="/assets/sennie.png"
+                        alt="SAM PUT SENNIE IMAGE HERE"
+                        width={32}
+                        height={32}
+                        className="rounded-full mb-2 bg-senthrap-new-blue-light"
+                      />
+                      <ReactMarkdown
+                        className="bg-senthrap-new-yellow-light border border-bg-senthrap-new-yellow-stroke text-senthrap-new-blue-dark font-medium text-left mr-auto max-w-[80%] rounded-lg p-2 mb-2"
+                        remarkPlugins={[remarkGfm]}
+                      >
+                        {message.content}
+                      </ReactMarkdown>
+                    </div>
+                  )}
+                </div>
+              ))}
+          </div>
+          <div className="self-center mb-2">
             <ClipLoader
-              color={"#000000"}
-              loading={isEndingSession}
+              color={"#2E2E7D"}
+              loading={isLoading}
               size={50}
               aria-label="Loading Spinner"
               data-testid="loader"
             />
-          ) : (
-            "End Session"
-          )}
-        </button>
-      </section>
-      <form
-        className="flex items-center justify-start w-screen py-4 px-2 sticky bottom-0 bg-senthrap-new-white-bg"
-        onSubmit={handleSendMessage}
-      >
-        <textarea
-          className="focus:border-senthrap-new-blue-dark w-5/6 font-medium overflow-hidden text-senthrap-new-blue-dark border border-senthrap-new-blue-stroke mr-2 p-4 rounded-lg focus:outline-none"
-          onChange={(event) => setInputMessage(event.target.value)}
-          ref={textAreaRef}
-          placeholder="How are you feeling?"
-          value={inputMessage}
-        />
-        <div className="w-1/6 flex justify-center">
-          <button className="p-2" type="submit">
-            <Image
-              src="/assets/svg's/lets-icons_send-hor.svg"
-              alt="Mood Icon"
-              width={42}
-              height={42}
-            />
+          </div>
+          <button
+            onClick={endSession}
+            className={` ${
+              isEndingSession
+                ? ""
+                : "rounded-lg text-xs py-2 px-4 border border-senthrap-new-blue-dark file:rounded-lg mb-2 font-medium text-senthrap-new-blue-dark bg-senthrap-new-blue-light"
+            }`}
+            disabled={isEndingSession}
+          >
+            {isEndingSession ? (
+              <ClipLoader
+                color={"#000000"}
+                loading={isEndingSession}
+                size={50}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            ) : (
+              "End Session"
+            )}
           </button>
-        </div>
-      </form>
-    </main>
+        </section>
+        <form
+          className="flex items-center justify-start w-screen py-4 px-2 sticky bottom-14 bg-senthrap-new-white-bg"
+          onSubmit={handleSendMessage}
+        >
+          <textarea
+            className="focus:border-senthrap-new-blue-dark w-5/6 font-medium overflow-hidden text-senthrap-new-blue-dark border border-senthrap-new-blue-stroke mr-2 p-4 rounded-lg focus:outline-none"
+            onChange={(event) => setInputMessage(event.target.value)}
+            ref={textAreaRef}
+            placeholder="How are you feeling?"
+            value={inputMessage}
+          />
+          <div className="w-1/6 flex justify-center">
+            <button className="p-2" type="submit">
+              <Image
+                src="/assets/svg's/lets-icons_send-hor.svg"
+                alt="Mood Icon"
+                width={42}
+                height={42}
+              />
+            </button>
+          </div>
+        </form>
+      </main>
+      <NavigationBar />
+    </>
   )
 }
 
