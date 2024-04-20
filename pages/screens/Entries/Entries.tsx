@@ -12,6 +12,7 @@ export default function Entries() {
   const [data, setData] = useState([])
 
   useEffect(() => {
+    console.log("usersub", userSub)
     fetch(`/api/queryEntries?userSub=${userSub}`)
       .then((response) => response.json())
       .then((data) => {
@@ -20,7 +21,7 @@ export default function Entries() {
       .catch((error) => {
         console.error("Error fetching data: ", error)
       })
-  }, [userSub])
+  }, [userSub, data])
 
   return (
     <div className="bg-senthrap-new-yellow-light">
