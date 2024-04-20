@@ -12,11 +12,15 @@ export default function Entries() {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    console.log("usersub", userSub)
     fetch(`/api/queryEntries?userSub=${userSub}`)
       .then((response) => response.json())
       .then((data) => {
-        setData(data.data)
+        const sortedData = data.data.sort((a: entrySchema, b: entrySchema) => {
+          return (
+            new Date(b.entry_date).getTime() - new Date(a.entry_date).getTime()
+          )
+        })
+        setData(sortedData)
       })
       .catch((error) => {
         console.error("Error fetching data: ", error)
