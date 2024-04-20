@@ -13,6 +13,7 @@ export default async function handler(
       user_id,
       entry_symptoms,
       entry_activity,
+      entry_advice
     } = req.body
     const current_date_and_time = new Date().toISOString()
 
@@ -26,6 +27,7 @@ export default async function handler(
       entry_symptoms: entry_symptoms,
       entry_mood: entry_mood,
       entry_content: entry_content,
+      entry_advice: entry_advice,
       user_id: user_id,
     }
 

@@ -46,7 +46,7 @@ export default function Entries() {
                   activities={entry.entry_activity}
                   symptoms={entry.entry_symptoms}
                   notes={entry.entry_content}
-                  advice="?"
+                  advice={entry.entry_advice}
                   date={formattedDate}
                 />
               </div>
