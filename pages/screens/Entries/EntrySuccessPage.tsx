@@ -17,14 +17,14 @@ function EntrySuccessPage() {
         />
       </div>
       <div className="flex items-center justify-center flex-col">
-        <p className="text-senthrap-new-blue-dark text-7xl font-bold italic mt-24">
+        <p className="text-senthrap-new-blue-dark text-7xl font-bold italic mt-16">
           Entry
         </p>
         <p className="text-senthrap-new-blue-dark text-7xl font-bold italic">
           Success!
         </p>
       </div>
-      <div className="flex items-center justify-center mt-64">
+      <div className="flex items-center justify-center mt-48">
         <button
           onClick={navigateToNewHome}
           className="bg-senthrap-new-blue-dark text-senthrap-new-white-bg font-bold py-6 px-12 text-3xl rounded-lg"

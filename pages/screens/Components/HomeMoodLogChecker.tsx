@@ -213,7 +213,7 @@ export default function HomeMoodLogChecker() {
         />
       </div>
       <button
-        className="border border-senthrap-new-yellow-stroke bg-senthrap-new-yellow-light rounded-2xl mt-4"
+        className="border border-senthrap-new-yellow-stroke bg-senthrap-new-yellow-light  rounded-2xl mt-4"
         onClick={handleSubmit}
       >
         <p className="font-bold text-senthrap-new-blue-dark text-base px-8 py-2">
