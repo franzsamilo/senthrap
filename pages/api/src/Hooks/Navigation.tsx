@@ -43,6 +43,10 @@ export default function useNavigation() {
     router.push("/screens/Home/NewHome")
   }
 
+  function navigateToEntrySuccess() {
+    router.push("/screens/Entries/EntrySuccessPage")
+  }
+
   return {
     navigateToHome,
     navigateToActivityLog,
@@ -54,5 +58,6 @@ export default function useNavigation() {
     navigateToActivityLogUploadSuccess,
     navigateToEntries,
     navigateToNewHome,
+    navigateToEntrySuccess,
   }
 }

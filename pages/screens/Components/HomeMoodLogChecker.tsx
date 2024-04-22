@@ -4,6 +4,7 @@ import Dropdown from "./Dropdown"
 import DropdownRow from "@/constant/schemas/DropdownRow"
 import { useUser } from "@auth0/nextjs-auth0/client"
 import OpenAI from "openai"
+import useNavigation from "@/pages/api/src/Hooks/Navigation"
 
 let openaiInstance: OpenAI
 
@@ -20,7 +21,7 @@ async function getOpenAIInstance() {
 
 export default function HomeMoodLogChecker() {
   const { user } = useUser()
-
+  const { navigateToEntrySuccess } = useNavigation()
   const [content, setContent] = useState("")
   const [mood, setMood] = useState<Number>(0)
   const [selectedActivity, setSelectedActivity] = useState<DropdownRow[]>([])
@@ -86,6 +87,7 @@ export default function HomeMoodLogChecker() {
 
         if (response.ok) {
           console.log("Entry uploaded successfully")
+          navigateToEntrySuccess()
         } else {
           console.error("Failed to upload entry")
         }

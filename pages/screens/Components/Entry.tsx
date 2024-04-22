@@ -76,9 +76,9 @@ export default function Entry(props: EntryProps) {
   const toggleTab = () => setIsOpen(!isOpen)
 
   return (
-    <div>
+    <div className="mb-4">
       <button
-        className={`p-4 flex justify-between items-center text-senthrap-new-blue-dark w-9/12 font-bold bg-senthrap-new-yellow-heavy  border-senthrap-new-yellow-stroke ${
+        className={`p-4 flex justify-between items-center text-senthrap-new-blue-dark w-9/12 ml-14 font-bold bg-senthrap-new-yellow-heavy  border-senthrap-new-yellow-stroke ${
           !isOpen ? "border rounded-2xl" : "border-t rounded-t-2xl"
         }`}
         onClick={toggleTab}
@@ -102,7 +102,7 @@ export default function Entry(props: EntryProps) {
       </button>
       {isOpen && (
         <div
-          className={`tab-content p-4 w-9/12 rounded-b-2xl  bg-senthrap-new-yellow-heavy border-senthrap-new-yellow-stroke`}
+          className={`tab-content p-4 w-9/12 ml-14 rounded-b-2xl  bg-senthrap-new-yellow-heavy border-senthrap-new-yellow-stroke`}
         >
           <div className="flex flex-row justify-between w-3/5">
             <p className="text-base text-senthrap-new-blue-dark font-bold">
