@@ -3,6 +3,20 @@ import Image from "next/image"
 import Dropdown from "./Dropdown"
 import DropdownRow from "@/constant/schemas/DropdownRow"
 import { useUser } from "@auth0/nextjs-auth0/client"
+import OpenAI from "openai"
+
+let openaiInstance: OpenAI
+
+async function getOpenAIInstance() {
+  if (!openaiInstance) {
+    const { default: OpenAI } = await import("openai")
+    openaiInstance = new OpenAI({
+      apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+      dangerouslyAllowBrowser: true,
+    })
+  }
+  return openaiInstance
+}
 
 export default function HomeMoodLogChecker() {
   const { user } = useUser()
@@ -11,6 +25,7 @@ export default function HomeMoodLogChecker() {
   const [mood, setMood] = useState<Number>(0)
   const [selectedActivity, setSelectedActivity] = useState<DropdownRow[]>([])
   const [selectedSymptoms, setSelectedSymptoms] = useState<DropdownRow[]>([])
+  const [advice, setAdvice] = useState("")
 
   const options = [
     { value: "React", label: "React" },
@@ -27,24 +42,60 @@ export default function HomeMoodLogChecker() {
       return
     }
 
-    const response = await fetch("/api/uploadEntry", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        entry_mood: mood,
-        entry_activity: selectedActivity.map((activity) => activity.value),
-        entry_symptoms: selectedSymptoms.map((symptom) => symptom.value),
-        entry_content: content,
-        user_id: user.sub,
-      }),
-    })
+    try {
+      const openai = await getOpenAIInstance()
+      const openaiCompletion = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo-0125",
+        temperature: 0.75,
+        messages: [
+          {
+            role: "user",
+            content: `You are a helpful mental health assistant who gives specific and helpful suggestions. Can you give a short advice in one sentence based on these information: \n
+            Mood: ${mood}\n
+            Activities: ${selectedActivity
+              .map((activity) => activity.value)
+              .join(", ")}\n
+            Symptoms: ${selectedSymptoms
+              .map((symptom) => symptom.value)
+              .join(", ")}\n
+            Content: ${content}\n`,
+          },
+        ],
+      })
+      const generatedAdvice =
+        openaiCompletion.choices[0]?.message?.content?.trim() ?? ""
+      setAdvice(generatedAdvice)
+      console.log(advice)
 
-    if (response.ok) {
-      console.log("Entry uploaded successfully")
-    } else {
-      console.error("Failed to upload entry")
+      // After generating advice, submit the form
+      if (advice) {
+        const response = await fetch("/api/uploadEntry", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            entry_mood: mood,
+            entry_activity: selectedActivity.map((activity) => activity.value),
+            entry_symptoms: selectedSymptoms.map((symptom) => symptom.value),
+            entry_content: content,
+            entry_advice: advice,
+            user_id: user.sub,
+          }),
+        })
+
+        if (response.ok) {
+          console.log("Entry uploaded successfully")
+        } else {
+          console.error("Failed to upload entry")
+        }
+      } else {
+        console.log("No advice found.")
+      }
+    } catch (error) {
+      console.error("Error generating advice:", error)
+      // Provide a fallback advice in case of an error
+      setAdvice("Take care of yourself and stay positive!")
     }
   }
 

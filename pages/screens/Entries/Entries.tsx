@@ -15,12 +15,17 @@ export default function Entries() {
     fetch(`/api/queryEntries?userSub=${userSub}`)
       .then((response) => response.json())
       .then((data) => {
-        setData(data.data)
+        const sortedData = data.data.sort((a: entrySchema, b: entrySchema) => {
+          return (
+            new Date(b.entry_date).getTime() - new Date(a.entry_date).getTime()
+          )
+        })
+        setData(sortedData)
       })
       .catch((error) => {
         console.error("Error fetching data: ", error)
       })
-  }, [userSub])
+  }, [userSub, data])
 
   return (
     <div className="bg-senthrap-new-yellow-light">
@@ -46,7 +51,7 @@ export default function Entries() {
                   activities={entry.entry_activity}
                   symptoms={entry.entry_symptoms}
                   notes={entry.entry_content}
-                  advice="?"
+                  advice={entry.entry_advice}
                   date={formattedDate}
                 />
               </div>
