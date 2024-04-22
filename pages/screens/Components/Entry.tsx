@@ -11,6 +11,65 @@ interface EntryProps {
 }
 
 export default function Entry(props: EntryProps) {
+  function moodDisplayHandler(mood: number) {
+    switch (mood) {
+      case 1:
+        return (
+          <Image
+            src="/assets/svg's/moods/Mood1.svg"
+            alt="1"
+            width={20}
+            height={20}
+          />
+        )
+      case 2:
+        return (
+          <Image
+            src="/assets/svg's/moods/Mood2.svg"
+            alt="2"
+            width={20}
+            height={20}
+          />
+        )
+      case 3:
+        return (
+          <Image
+            src="/assets/svg's/moods/Mood3.svg"
+            alt="3"
+            width={20}
+            height={20}
+          />
+        )
+      case 4:
+        return (
+          <Image
+            src="/assets/svg's/moods/Mood4.svg"
+            alt="4"
+            width={20}
+            height={20}
+          />
+        )
+      case 5:
+        return (
+          <Image
+            src="/assets/svg's/moods/Mood5.svg"
+            alt="5"
+            width={20}
+            height={20}
+          />
+        )
+      default:
+        return (
+          <Image
+            src="/assets/svg's/moods/Mood5.svg"
+            alt="5"
+            width={20}
+            height={20}
+          />
+        )
+    }
+  }
+
   const { mood, date, activities, symptoms, notes, advice } = props
   const [isOpen, setIsOpen] = useState(false)
 
@@ -49,7 +108,7 @@ export default function Entry(props: EntryProps) {
             <p className="text-base text-senthrap-new-blue-dark font-bold">
               Mood:
             </p>
-            <p>{mood}</p>
+            {moodDisplayHandler(mood)}
           </div>
           <div className="flex flex-row justify-between w-3/5">
             <p className="text-base text-senthrap-new-blue-dark font-bold">
