@@ -29,8 +29,8 @@ export default function Entries() {
   }, [userSub, data])
 
   return (
-    <div className="bg-senthrap-new-yellow-light">
-      <div className=" justify-center items-center flex flex-col mb-8">
+    <div className="bg-senthrap-new-yellow-light min-h-screen">
+      <div className=" justify-center items-center flex flex-col mb-8 h-full">
         <NewHeader />
         <h2 className="font-bold text-senthrap-new-blue-dark text-xl py-4">
           Entries
