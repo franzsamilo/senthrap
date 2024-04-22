@@ -4,6 +4,7 @@ import { useUser } from "@auth0/nextjs-auth0/client"
 import Dropdown from "../Components/Dropdown"
 import entrySchema from "@/constant/schemas/entrySchema"
 import Entry from "../Components/Entry"
+import NewHeader from "../Components/NewHeader"
 
 export default function Entries() {
   const { user } = useUser()
@@ -30,9 +31,7 @@ export default function Entries() {
   return (
     <div className="bg-senthrap-new-yellow-light">
       <div className=" justify-center items-center flex flex-col mb-8">
-        <p className="font-bold text-senthrap-new-blue-dark text-xl pt-4">
-          LOGO
-        </p>
+        <NewHeader />
         <h2 className="font-bold text-senthrap-new-blue-dark text-xl py-4">
           Entries
         </h2>
