@@ -6,22 +6,15 @@ import useNavigation from "@/pages/api/src/Hooks/Navigation"
 import { IoHomeOutline, IoAperture, IoCloseOutline } from "react-icons/io5"
 
 function NavigationBar() {
-  const {
-    navigateToActivityLog,
-    navigateToChat,
-    navigateToMoodLog,
-    navigateToStats,
-    navigateToHome,
-  } = useNavigation()
-  const { user } = useUser()
+  const { navigateToChat, navigateToNewHome } = useNavigation()
+
   const router = useRouter()
-  const [isRadialMenuOpen, setIsRadialMenuOpen] = useState(false)
+
   const allowedPaths = ["/", "/screens/Home/Home"]
-  const isHomeScreen = allowedPaths.includes(router.pathname)
 
   return (
     <div className="bg-senthrap-new-blue-light bottom-0 h-14 fixed w-full justify-between flex-row flex px-7">
-      <button onClick={navigateToHome}>
+      <button onClick={navigateToNewHome}>
         <Image
           src="/assets/svg's/navbar/CalendarIcon.svg"
           alt="Calendar Icon"
@@ -29,15 +22,15 @@ function NavigationBar() {
           height={30}
         />
       </button>
-      <button onClick={navigateToChat}>
+      <button onClick={navigateToChat} className="mt-2">
         <Image
           src="/assets/svg's/navbar/ChatIcon.svg"
           alt="Chat Icon"
-          width={30}
+          width={35}
           height={30}
         />
       </button>
-      <button>
+      <button onClick={() => alert("This feature will be added soon.")}>
         <Image
           src="/assets/svg's/navbar/CircleWithCrossIcon.svg"
           alt="Add Icon"
@@ -45,7 +38,7 @@ function NavigationBar() {
           height={30}
         />
       </button>
-      <button>
+      <button onClick={() => alert("This feature will be added soon.")}>
         <Image
           src="/assets/svg's/navbar/CommunityIcon.svg"
           alt="Community Icon"
@@ -53,7 +46,7 @@ function NavigationBar() {
           height={30}
         />
       </button>
-      <button>
+      <button onClick={() => alert("This feature will be added soon.")}>
         <Image
           src="/assets/svg's/navbar/UserIcon.svg"
           alt="Mood Icon"

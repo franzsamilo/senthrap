@@ -7,7 +7,7 @@ function NewHeader() {
       <Image
         src="/assets/senthrap-text-logo.png"
         alt={""}
-        width={150}
+        width={100}
         height={100}
         className="rounded-lg"
       />

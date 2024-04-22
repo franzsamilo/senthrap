@@ -49,73 +49,77 @@ export default function HomeMoodLogChecker() {
   }
 
   return (
-    <div className="bg-senthrap-new-yellow-heavy py-12 w-10/12 flex flex-col items-center justify-center mx-8 rounded-2xl border border-senthrap-new-yellow-stroke">
-      <div className="items-center justify-between flex flex-row">
-        <p className="font-bold text-senthrap-new-blue-dark text-xl">
-          How are you today?
-        </p>
-      </div>
+    <div className="bg-senthrap-new-yellow-heavy py-12 w-10/12 flex flex-col items-center mx-8 rounded-2xl border border-senthrap-new-yellow-stroke mb-12">
+      <p className="font-bold text-senthrap-new-blue-dark text-xl mb-4">
+        How are you today?
+      </p>
+      <div></div>
       <div className="flex flex-row justify-between w-3/5">
         <p className="font-bold text-senthrap-new-blue-dark text-base">Mood</p>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row">
           <button
             onClick={() => {
               setMood(1)
             }}
+            className="mr-1"
           >
             <Image
               src="/assets/svg's/moods/Mood1.svg"
               alt="Mood Icon1"
-              width={20}
-              height={20}
+              width={25}
+              height={25}
             />
           </button>
           <button
             onClick={() => {
               setMood(2)
             }}
+            className="mr-1"
           >
             <Image
               src="/assets/svg's/moods/Mood2.svg"
               alt="Mood Icon2"
-              width={20}
-              height={20}
+              width={25}
+              height={25}
             />
           </button>
           <button
             onClick={() => {
               setMood(3)
             }}
+            className="mr-1"
           >
             <Image
               src="/assets/svg's/moods/Mood3.svg"
               alt="Mood Icon3"
-              width={20}
-              height={20}
+              width={25}
+              height={25}
             />
           </button>
           <button
             onClick={() => {
               setMood(4)
             }}
+            className="mr-1"
           >
             <Image
               src="/assets/svg's/moods/Mood4.svg"
               alt="Mood Icon4"
-              width={20}
-              height={20}
+              width={25}
+              height={25}
             />
           </button>
           <button
             onClick={() => {
               setMood(5)
             }}
+            className="mr-1"
           >
             <Image
               src="/assets/svg's/moods/Mood5.svg"
               alt="Mood Icon5"
-              width={20}
-              height={20}
+              width={25}
+              height={25}
             />
           </button>
         </div>
@@ -132,7 +136,7 @@ export default function HomeMoodLogChecker() {
         />
       </div>
       <div className="flex-row flex pt-4 justify-between items-center w-3/5">
-        <p className="font-bold text-senthrap-new-blue-dark text-base">
+        <p className="font-bold text-senthrap-new-blue-dark text-base mr-3">
           Symptoms
         </p>
         <Dropdown
@@ -143,11 +147,13 @@ export default function HomeMoodLogChecker() {
         />
       </div>
       <div className="flex-row flex pt-4 justify-between items-center w-3/5">
-        <p className="font-bold text-senthrap-new-blue-dark text-base">Notes</p>
+        <p className="font-bold text-senthrap-new-blue-dark text-base mb-4">
+          Notes
+        </p>
       </div>
       <div>
         <textarea
-          className="focus:outline-none p-5 min-h-80 h-auto min-w-72 bg-senthrap-new-yellow-light border border-senthrap-new-yellow-stroke rounded-md font-medium text-sm placeholder-senthrap-new-blue-dark text-senthrap-new-blue-dark w-full resize-none"
+          className="focus:outline-none p-5 min-h-72 h-auto min-w-72 bg-senthrap-new-yellow-light border placeholder-slate-500 border-senthrap-new-yellow-stroke rounded-md font-medium text-sm  text-senthrap-new-blue-dark w-full resize-none"
           placeholder="Why do you feel that way?"
           value={content}
           onChange={(e) => setContent(e.target.value)}

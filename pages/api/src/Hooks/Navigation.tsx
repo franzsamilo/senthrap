@@ -39,6 +39,10 @@ export default function useNavigation() {
     router.push("/screens/ActivityLog/ActivityLogUploadSuccess")
   }
 
+  function navigateToNewHome() {
+    router.push("/screens/Home/NewHome")
+  }
+
   return {
     navigateToHome,
     navigateToActivityLog,
@@ -49,5 +53,6 @@ export default function useNavigation() {
     navigateToStats,
     navigateToActivityLogUploadSuccess,
     navigateToEntries,
+    navigateToNewHome,
   }
 }
