@@ -9,11 +9,10 @@ import NewHeader from "../Components/NewHeader"
 export default function Entries() {
   const { user } = useUser()
 
-  const userSub = user?.sub
   const [data, setData] = useState([])
 
   useEffect(() => {
-    fetch(`/api/queryEntries?userSub=${userSub}`)
+    fetch(`/api/queryEntries?userSub=${user?.sub}`)
       .then((response) => response.json())
       .then((data) => {
         const sortedData = data.data.sort((a: entrySchema, b: entrySchema) => {
@@ -26,7 +25,7 @@ export default function Entries() {
       .catch((error) => {
         console.error("Error fetching data: ", error)
       })
-  }, [userSub, data])
+  }, [user])
 
   return (
     <div className="bg-senthrap-new-yellow-light min-h-screen">
