@@ -24,8 +24,8 @@ export default function HomeMoodLogChecker() {
   const { navigateToEntrySuccess } = useNavigation()
   const [content, setContent] = useState("")
   const [mood, setMood] = useState<Number>(0)
-  const [selectedActivity, setSelectedActivity] = useState<DropdownRow[]>([])
-  const [selectedSymptoms, setSelectedSymptoms] = useState<DropdownRow[]>([])
+  const [activity, setActivity] = useState("")
+  const [symptoms, setSymptoms] = useState("")
   const [advice, setAdvice] = useState("")
 
   const options = [
@@ -53,12 +53,8 @@ export default function HomeMoodLogChecker() {
             role: "user",
             content: `You are a helpful mental health assistant who gives specific and helpful suggestions. Can you give a short advice in one sentence based on these information: \n
             Mood: ${mood}\n
-            Activities: ${selectedActivity
-              .map((activity) => activity.value)
-              .join(", ")}\n
-            Symptoms: ${selectedSymptoms
-              .map((symptom) => symptom.value)
-              .join(", ")}\n
+            Activities: ${activity}\n
+            Symptoms: ${symptoms}\n
             Content: ${content}\n`,
           },
         ],
@@ -77,8 +73,8 @@ export default function HomeMoodLogChecker() {
           },
           body: JSON.stringify({
             entry_mood: mood,
-            entry_activity: selectedActivity.map((activity) => activity.value),
-            entry_symptoms: selectedSymptoms.map((symptom) => symptom.value),
+            entry_activity: activity,
+            entry_symptoms: symptoms,
             entry_content: content,
             entry_advice: advice,
             user_id: user.sub,
@@ -116,12 +112,21 @@ export default function HomeMoodLogChecker() {
             }}
             className="mr-1"
           >
-            <Image
-              src="/assets/svg's/moods/Mood1.svg"
-              alt="Mood Icon1"
-              width={25}
-              height={25}
-            />
+            {mood === 1 ? (
+              <Image
+                src="/assets/svg's/moods/Mood1.svg"
+                alt="Mood Icon1"
+                width={25}
+                height={25}
+              />
+            ) : (
+              <Image
+                src="/assets/svg's/moods/InvertMood1.svg"
+                alt="Mood Icon1"
+                width={25}
+                height={25}
+              />
+            )}
           </button>
           <button
             onClick={() => {
@@ -129,12 +134,21 @@ export default function HomeMoodLogChecker() {
             }}
             className="mr-1"
           >
-            <Image
-              src="/assets/svg's/moods/Mood2.svg"
-              alt="Mood Icon2"
-              width={25}
-              height={25}
-            />
+            {mood === 2 ? (
+              <Image
+                src="/assets/svg's/moods/Mood2.svg"
+                alt="Mood Icon2"
+                width={25}
+                height={25}
+              />
+            ) : (
+              <Image
+                src="/assets/svg's/moods/InvertMood2.svg"
+                alt="Mood Icon2"
+                width={25}
+                height={25}
+              />
+            )}
           </button>
           <button
             onClick={() => {
@@ -142,12 +156,21 @@ export default function HomeMoodLogChecker() {
             }}
             className="mr-1"
           >
-            <Image
-              src="/assets/svg's/moods/Mood3.svg"
-              alt="Mood Icon3"
-              width={25}
-              height={25}
-            />
+            {mood === 3 ? (
+              <Image
+                src="/assets/svg's/moods/Mood3.svg"
+                alt="Mood Icon3"
+                width={25}
+                height={25}
+              />
+            ) : (
+              <Image
+                src="/assets/svg's/moods/InvertMood3.svg"
+                alt="Mood Icon3"
+                width={25}
+                height={25}
+              />
+            )}
           </button>
           <button
             onClick={() => {
@@ -155,12 +178,21 @@ export default function HomeMoodLogChecker() {
             }}
             className="mr-1"
           >
-            <Image
-              src="/assets/svg's/moods/Mood4.svg"
-              alt="Mood Icon4"
-              width={25}
-              height={25}
-            />
+            {mood === 4 ? (
+              <Image
+                src="/assets/svg's/moods/Mood4.svg"
+                alt="Mood Icon4"
+                width={25}
+                height={25}
+              />
+            ) : (
+              <Image
+                src="/assets/svg's/moods/InvertMood4.svg"
+                alt="Mood Icon4"
+                width={25}
+                height={25}
+              />
+            )}
           </button>
           <button
             onClick={() => {
@@ -168,12 +200,21 @@ export default function HomeMoodLogChecker() {
             }}
             className="mr-1"
           >
-            <Image
-              src="/assets/svg's/moods/Mood5.svg"
-              alt="Mood Icon5"
-              width={25}
-              height={25}
-            />
+            {mood === 5 ? (
+              <Image
+                src="/assets/svg's/moods/Mood5.svg"
+                alt="Mood Icon5"
+                width={25}
+                height={25}
+              />
+            ) : (
+              <Image
+                src="/assets/svg's/moods/InvertMood5.svg"
+                alt="Mood Icon5"
+                width={25}
+                height={25}
+              />
+            )}
           </button>
         </div>
       </div>
@@ -181,22 +222,26 @@ export default function HomeMoodLogChecker() {
         <p className="font-bold text-senthrap-new-blue-dark text-base">
           Activity
         </p>
-        <Dropdown
-          selected={selectedActivity}
-          setSelected={setSelectedActivity}
-          options={options}
-          className="max-h-auto max-w-40"
+      </div>
+      <div>
+        <textarea
+          className="focus:outline-none p-5 min-h-27 h-auto min-w-72 bg-senthrap-new-yellow-light border placeholder-slate-500 border-senthrap-new-yellow-stroke rounded-md font-medium text-sm  text-senthrap-new-blue-dark w-full resize-none"
+          placeholder="What did you do today?"
+          value={activity}
+          onChange={(e) => setActivity(e.target.value)}
         />
       </div>
       <div className="flex-row flex pt-4 justify-between items-center w-3/5">
         <p className="font-bold text-senthrap-new-blue-dark text-base mr-3">
           Symptoms
         </p>
-        <Dropdown
-          selected={selectedSymptoms}
-          setSelected={setSelectedSymptoms}
-          options={options}
-          className="max-h-auto max-w-40"
+      </div>
+      <div>
+        <textarea
+          className="focus:outline-none p-5 min-h-27 h-auto min-w-72 bg-senthrap-new-yellow-light border placeholder-slate-500 border-senthrap-new-yellow-stroke rounded-md font-medium text-sm  text-senthrap-new-blue-dark w-full resize-none"
+          placeholder="What are you feeling?"
+          value={symptoms}
+          onChange={(e) => setSymptoms(e.target.value)}
         />
       </div>
       <div className="flex-row flex pt-4 justify-between items-center w-3/5">

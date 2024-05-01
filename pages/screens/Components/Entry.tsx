@@ -4,8 +4,8 @@ import Image from "next/image"
 interface EntryProps {
   mood: number
   date: string
-  activities: string[]
-  symptoms: string[]
+  activities: string
+  symptoms: string
   notes: string
   advice: string
 }
@@ -104,29 +104,29 @@ export default function Entry(props: EntryProps) {
         <div
           className={`tab-content p-4 w-9/12 ml-14 rounded-b-2xl  bg-senthrap-new-yellow-heavy border-senthrap-new-yellow-stroke`}
         >
-          <div className="flex flex-row justify-between w-3/5">
+          <div className="flex flex-row justify-between w-full">
             <p className="text-base text-senthrap-new-blue-dark font-bold">
               Mood:
             </p>
             {moodDisplayHandler(mood)}
           </div>
-          <div className="flex flex-row justify-between w-3/5">
+          <div className="flex flex-col justify-between w-full">
             <p className="text-base text-senthrap-new-blue-dark font-bold">
               Activities:
             </p>
             <p className="text-base text-senthrap-new-blue-dark font-medium">
-              {activities.join(", ")}
+              {activities}
             </p>
           </div>
-          <div className="flex flex-row justify-between w-3/5">
+          <div className="flex flex-col justify-between w-full">
             <p className="text-base text-senthrap-new-blue-dark font-bold">
               Symptoms:
             </p>
             <p className="text-base text-senthrap-new-blue-dark font-medium">
-              {symptoms.join(", ")}
+              {symptoms}
             </p>
           </div>
-          <div className="flex flex-col justify-between w-3/5">
+          <div className="flex flex-col justify-between w-full">
             <p className="text-base text-senthrap-new-blue-dark font-bold">
               Notes:
             </p>
