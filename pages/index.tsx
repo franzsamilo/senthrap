@@ -30,23 +30,23 @@ function Index() {
     <div className="bg-senthrap-splash bg-cover bg-center h-screen w-screen pt-12 ">
       <div className="flex flex-col items-center h-full text-center justify-between">
         <div className="mx-12">
-          <p className="text-4xl font-bold text-senthrap-neutral-100 drop-shadow-md">
+          <p className="text-5xl font-bold text-senthrap-new-yellow-light drop-shadow-2xl">
             WELCOME TO SENTHRAP
           </p>
-          <p className="text-senthrap-neutral-100 text-lg italic">
+          <p className="text-senthrap-new-yellow-light text-lg italic">
             a mental health app
           </p>
         </div>
         <div className="items-center justify-center">
           <Image
-            src="/assets/senthrap-logo-no-bg.png"
+            src="/assets/senthrap-text-logo.png"
             alt="Heart Senthrap"
             width={200}
             height={100}
           />
         </div>
         <button
-          className="bg-senthrap-neutral-100 rounded-md py-1 w-2/3 mb-12 hover:bg-white hover:text-white"
+          className="bg-senthrap-new-yellow-light rounded-md py-1 w-2/3 mb-12 hover:bg-white hover:text-white shadow-2xl"
           onClick={auth0Login}
         >
           <p className="text-senthrap-blue-100 text-xl font-bold">

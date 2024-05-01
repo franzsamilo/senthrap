@@ -202,7 +202,7 @@ function Chat() {
           <div className="flex flex-col w-full px-2 py-2 overflow-y-auto">
             <Image
               src="/assets/sennie.png"
-              alt="SAM PUT SENNIE IMAGE HERE"
+              alt="alt"
               width={32}
               height={32}
               className="rounded-full mb-2 bg-senthrap-new-blue-light"
@@ -234,7 +234,7 @@ function Chat() {
                     <div className="flex flex-col items-start">
                       <Image
                         src="/assets/sennie.png"
-                        alt="SAM PUT SENNIE IMAGE HERE"
+                        alt="alt"
                         width={32}
                         height={32}
                         className="rounded-full mb-2 bg-senthrap-new-blue-light"
