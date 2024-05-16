@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState } from "react"
 import Image from "next/image"
-import Dropdown from "./Dropdown"
+import Dropdown from "../ZUnusedScreens/Components/Dropdown"
 import DropdownRow from "@/constant/schemas/DropdownRow"
 import { useUser } from "@auth0/nextjs-auth0/client"
 import OpenAI from "openai"

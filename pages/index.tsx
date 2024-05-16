@@ -1,7 +1,7 @@
 import React from "react"
 import { useUser } from "@auth0/nextjs-auth0/client"
 import { useRouter } from "next/router"
-import Home from "./screens/Home/Home"
+import Home from "./screens/ZUnusedScreens/Home/Home"
 import NewHome from "./screens/Home/NewHome"
 import Image from "next/image"
 import loadinganimation from "../public/assets/heart-loading.gif"

@@ -1,9 +1,9 @@
 import React from "react"
 import Image from "next/image"
-import useNavigation from "../../api/src/Hooks/Navigation"
+import useNavigation from "../../../api/src/Hooks/Navigation"
 
-function ActivityLogSuccess() {
-  const { navigateToHome, navigateToActivityLog } = useNavigation()
+function MoodUploadSuccess() {
+  const { navigateToHome, navigateToMoodLog } = useNavigation()
 
   return (
     <div className="flex flex-col h-screen w-screen bg-senthrap-blue-100 items-center">
@@ -15,7 +15,7 @@ function ActivityLogSuccess() {
         className="mt-8"
       />
       <h1 className="text-5xl text-white italic font-extrabold mb-28 mt-14 text-center">
-        Activity Log Upload Success!
+        Mood Upload Success!
       </h1>
       <button
         className="bg-senthrap-blue-200 text-white font-bold rounded-lg py-2 px-12 mt-6 w-3/4 text-xl hover:bg-white hover:text-senthrap-blue-200"
@@ -25,12 +25,12 @@ function ActivityLogSuccess() {
       </button>
       <button
         className="bg-senthrap-blue-200 text-white font-bold rounded-lg py-2 px-12 mt-6 w-3/4 text-xl hover:bg-white hover:text-senthrap-blue-200"
-        onClick={navigateToActivityLog}
+        onClick={navigateToMoodLog}
       >
-        Go back to Activity Log
+        Go back to Mood Log
       </button>
     </div>
   )
 }
 
-export default ActivityLogSuccess
+export default MoodUploadSuccess

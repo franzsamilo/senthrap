@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import NavigationBar from "../Components/NavigationBar"
 import { useUser } from "@auth0/nextjs-auth0/client"
-import Dropdown from "../Components/Dropdown"
+import Dropdown from "../ZUnusedScreens/Components/Dropdown"
 import entrySchema from "@/constant/schemas/entrySchema"
 import Entry from "../Components/Entry"
 import NewHeader from "../Components/NewHeader"

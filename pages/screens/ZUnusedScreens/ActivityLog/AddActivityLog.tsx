@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import { activityCategories } from "../../../constant/enums/activityCategories"
+import { activityCategories } from "../../../../constant/enums/activityCategories"
 import { useUser } from "@auth0/nextjs-auth0/client"
-import useNavigation from "../../api/src/Hooks/Navigation"
+import useNavigation from "../../../api/src/Hooks/Navigation"
 
 function AddActivityLog() {
   const [selectedCategory, setSelectedCategory] = useState("")
