@@ -1,35 +1,16 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import NavigationBar from "../Components/NavigationBar"
-import { useUser } from "@auth0/nextjs-auth0/client"
-import Dropdown from "../ZUnusedScreens/Components/Dropdown"
-import entrySchema from "@/constant/schemas/entrySchema"
 import Entry from "../Components/Entry"
 import NewHeader from "../Components/NewHeader"
+import { useFetchEntries } from "@/pages/api/src/Hooks/useFetchEntries"
+import entrySchema from "@/constant/schemas/entrySchema"
 
 export default function Entries() {
-  const { user } = useUser()
-
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    fetch(`/api/queryEntries?userSub=${user?.sub}`)
-      .then((response) => response.json())
-      .then((data) => {
-        const sortedData = data.data.sort((a: entrySchema, b: entrySchema) => {
-          return (
-            new Date(b.entry_date).getTime() - new Date(a.entry_date).getTime()
-          )
-        })
-        setData(sortedData)
-      })
-      .catch((error) => {
-        console.error("Error fetching data: ", error)
-      })
-  }, [user])
+  const data = useFetchEntries()
 
   return (
     <div className="bg-senthrap-new-yellow-light min-h-screen">
-      <div className=" justify-center items-center flex flex-col mb-8 h-full">
+      <div className="justify-center items-center flex flex-col mb-8 h-full">
         <NewHeader />
         <h2 className="font-bold text-senthrap-new-blue-dark text-xl py-4">
           Entries
