@@ -28,13 +28,6 @@ export default function HomeMoodLogChecker() {
   const [symptoms, setSymptoms] = useState("")
   const [advice, setAdvice] = useState("")
 
-  const options = [
-    { value: "React", label: "React" },
-    { value: "Vue", label: "Vue" },
-    { value: "Angular", label: "Angular" },
-    { value: "Java", label: "Java" },
-  ]
-
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault()
 
