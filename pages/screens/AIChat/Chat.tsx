@@ -3,7 +3,7 @@ import OpenAI from "openai"
 import Image from "next/image"
 import { Message } from "@/constant/types/messages"
 import { ClipLoader } from "react-spinners"
-import ReactMarkdown from "react-markdown"
+// import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import useNavigation from "@/pages/api/src/Hooks/Navigation"
 import { useUser } from "@auth0/nextjs-auth0/client"
@@ -223,12 +223,15 @@ function Chat() {
                         height={32}
                         className="rounded-full mb-2"
                       />
-                      <ReactMarkdown
+                      {/* <ReactMarkdown
                         className="bg-senthrap-new-blue-light border border-bg-senthrap-new-blue-stroke text-senthrap-new-blue-dark font-medium text-right ml-auto max-w-[80%] rounded-lg p-2 mb-2"
                         remarkPlugins={[remarkGfm]}
                       >
                         {message.content}
-                      </ReactMarkdown>
+                      </ReactMarkdown> */}
+                      <div className="bg-senthrap-new-blue-light border border-bg-senthrap-new-blue-stroke text-senthrap-new-blue-dark font-medium text-right ml-auto max-w-[80%] rounded-lg p-2 mb-2">
+                        {message.content}
+                      </div>
                     </div>
                   ) : (
                     <div className="flex flex-col items-start">
@@ -239,12 +242,15 @@ function Chat() {
                         height={32}
                         className="rounded-full mb-2 bg-senthrap-new-blue-light"
                       />
-                      <ReactMarkdown
+                      {/* <ReactMarkdown
                         className="bg-senthrap-new-yellow-light border border-bg-senthrap-new-yellow-stroke text-senthrap-new-blue-dark font-medium text-left mr-auto max-w-[80%] rounded-lg p-2 mb-2"
                         remarkPlugins={[remarkGfm]}
                       >
                         {message.content}
-                      </ReactMarkdown>
+                      </ReactMarkdown> */}
+                      <div className="bg-senthrap-new-yellow-light border border-bg-senthrap-new-yellow-stroke text-senthrap-new-blue-dark font-medium text-left mr-auto max-w-[80%] rounded-lg p-2 mb-2">
+                        {message.content}
+                      </div>
                     </div>
                   )}
                 </div>
