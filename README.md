@@ -1,5 +1,5 @@
 # SENTHRAP
-Deployed Website: [Senthrap]([https://link-url-here.org](https://senthrap-franzsamilos-projects.vercel.app/)) 
+Deployed Website: [Senthrap](https://senthrap-franzsamilos-projects.vercel.app/) 
 
 ## Team Members 
 
@@ -11,11 +11,6 @@ Deployed Website: [Senthrap]([https://link-url-here.org](https://senthrap-franzs
 
 ###  Franz Eliezer Samilo 
 ![lol2](https://github.com/franzsamilo/senthrap/assets/90561528/7cceb0ad-3dd7-403c-a756-9989661157e0)
-
-## Test Env
-```
--
-```
 
 ## Initialization 
  Install the dependencies: 
