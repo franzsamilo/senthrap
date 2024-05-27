@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 
 import uploadDocument from "./src/utils/uploadDocument"
-import getCollection from "./src/utils/getCollection"
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { db } from "./src/config/firebase";
 

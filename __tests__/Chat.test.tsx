@@ -4,6 +4,10 @@ import { render, screen } from "@testing-library/react"
 import Chat from "../pages/screens/AIChat/Chat"
 import { useRouter } from "next/router"
 
+// API Testing
+
+// Snapshot Testing/UI Testing
+
 // Mock the useRouter hook
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
