@@ -33,6 +33,7 @@ describe("Chat component", () => {
       }))
   })
 
+  //teardown
   afterAll(() => {
     jest.clearAllMocks()
   })
