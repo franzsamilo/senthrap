@@ -1,3 +1,4 @@
+import "dotenv/config"
 import "openai/shims/node"
 import React from "react"
 import "@testing-library/jest-dom"
@@ -23,22 +24,17 @@ describe("Chat component", () => {
     sub: "auth0|123456",
   }
 
-  const OLD_ENV = process.env
-
   beforeAll(() => {
     ;(useRouter as jest.Mock).mockImplementation(() => ({
       push: jest.fn(),
     })),
       (useUser as jest.Mock).mockImplementation(() => ({
         user: mockUser,
-      })),
-      (process.env = { ...OLD_ENV }),
-      (process.env.NEXT_PUBLIC_OPENAI_API_KEY =
-        "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")
+      }))
   })
 
   afterAll(() => {
-    jest.clearAllMocks(), (process.env = OLD_ENV)
+    jest.clearAllMocks()
   })
 
   test("renders Chat component without crashing", () => {

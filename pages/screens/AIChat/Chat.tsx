@@ -15,7 +15,7 @@ export async function getOpenAIInstance() {
   if (!openaiInstance) {
     const { default: OpenAI } = await import("openai")
     openaiInstance = new OpenAI({
-      apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+      apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY, //"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"
       dangerouslyAllowBrowser: true,
     })
   }
