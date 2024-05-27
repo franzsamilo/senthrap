@@ -20,7 +20,7 @@ export default function HistoryModal(props: HistoryModalProps) {
       .sort((a, b) => {
         const timeA = new Date(a.mood_log_upload_time).getTime()
         const timeB = new Date(b.mood_log_upload_time).getTime()
-        return timeB - timeA // Sort in descending order
+        return timeB - timeA
       })
       .slice(0, 5)
     setLatestData(latestData)

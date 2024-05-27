@@ -29,7 +29,7 @@ const config: Config = {
           yellow: {
             "100": "#FFFABE",
           },
-          // new colors
+
           "new-blue": {
             light: "#E1F1FF",
             stroke: "#BEBED9",
@@ -48,6 +48,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [require("@tailwindcss/typography")],
 }
 export default config
