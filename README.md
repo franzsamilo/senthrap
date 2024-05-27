@@ -1,5 +1,5 @@
 # SENTHRAP
-Deployed Website: [Senthrap](https://senthrap-franzsamilos-projects.vercel.app/) 
+Deployed Website: [Senthrap](https://senthrap.vercel.app/) 
 
 ## Team Members 
 
