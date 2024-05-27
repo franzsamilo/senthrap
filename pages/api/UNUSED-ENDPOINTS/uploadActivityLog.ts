@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import uploadDocument from "./src/utils/uploadDocument"
+import uploadDocument from "../src/utils/uploadDocument"
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse

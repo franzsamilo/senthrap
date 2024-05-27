@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import getCollection from "./src/utils/getCollection"
+import getCollection from "../src/utils/getCollection"
 import { DocumentData } from "firebase/firestore"
 
 export default async function handler(
