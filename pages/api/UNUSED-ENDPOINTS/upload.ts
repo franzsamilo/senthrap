@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import uploadDocument from "./src/utils/uploadDocument"
-
+import uploadDocument from "../src/utils/uploadDocument"
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -15,7 +14,6 @@ export default async function handler(
     uploadDocument(collectionName, data)
     res.status(200).json({ message: "POST request processed successfully" })
   } else {
-    // Handle other HTTP methods if needed
     res.status(405).json({ message: "Method Not Allowed" })
   }
 }

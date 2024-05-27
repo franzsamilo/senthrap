@@ -41,7 +41,6 @@ function Stats() {
 
   const { user } = useUser()
   useEffect(() => {
-    // Fetch data from API route on page load
     fetch(`/api/fetchMoods`)
       .then((response) => {
         if (!response.ok) {
@@ -50,11 +49,10 @@ function Stats() {
         return response.json()
       })
       .then((data) => {
-        // Filter the data based on the user ID
         const filteredData = data.data.filter(
           (entry: MoodData) => entry.user_id === user?.sub
         )
-        // Set the filtered data to the state
+
         setData(filteredData)
       })
       .catch((error) => console.error("Error:", error))

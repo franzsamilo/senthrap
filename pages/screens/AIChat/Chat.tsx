@@ -29,7 +29,6 @@ function Chat() {
   const [chatLog, setChatLog] = useState<Message[]>([])
   const [inputMessage, setInputMessage] = useState("")
 
-  // This is for the auto-resizing function of the textarea input
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -41,10 +40,8 @@ function Chat() {
 
   const [isLoading, setIsLoading] = useState(false)
 
-  // This is a loading state for "End Session"
   const [isEndingSession, setIsEndingSession] = useState(false)
 
-  // This engages the system prompt - if you wanna edit the prompt do it here
   useEffect(() => {
     setChatLog([
       {
@@ -110,7 +107,6 @@ function Chat() {
     }
   }
 
-  // This serves as a precaution for not saving conversation
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       event.preventDefault()
@@ -125,23 +121,22 @@ function Chat() {
     }
   }, [])
 
-  // Summarizing chat logs via "End Session" button
   const summarizeConversation = async (chatLog: Message[]): Promise<string> => {
     const fullText = chatLog.map((msg) => msg.content).join("\n")
-    const openai = await getOpenAIInstance() // Use the getOpenAIInstance function to get the openai instance
+    const openai = await getOpenAIInstance()
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         {
           role: "user",
-          // This part you can also customize the prompt on how it would summarize
+
           content: `You are a helpful mental health assistant who gives specific and helpful suggestions and also writes in paragraph form. Please summarize the following text:\n
           ${fullText}\n`,
         },
       ],
-      // 0 means more technical; 1 means more creative/free
+
       temperature: 0.5,
-      // limit on how many it will tokens/characters it will read before summarizing
+
       max_tokens: 1024,
       n: 1,
     })
