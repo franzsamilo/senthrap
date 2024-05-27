@@ -1,7 +1,7 @@
 import React from "react"
 import "@testing-library/jest-dom"
 import { render, screen } from "@testing-library/react"
-import Chat from "../pages/screens/AIChat/Chat"
+import Chat from "../../pages/screens/AIChat/Chat"
 import { useRouter } from "next/router"
 
 // Mock the useRouter hook

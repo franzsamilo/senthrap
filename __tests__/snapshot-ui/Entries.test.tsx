@@ -1,10 +1,10 @@
 import React from "react"
 import "@testing-library/jest-dom"
 import { render, screen } from "@testing-library/react"
-import Entries from "../pages/screens/Entries/Entries"
-import { useFetchEntries } from "../pages/api/src/Hooks/useFetchEntries" // Adjusted to match relative path
+import Entries from "../../pages/screens/Entries/Entries"
+import { useFetchEntries } from "../../pages/api/src/Hooks/useFetchEntries"
 
-jest.mock("../pages/api/src/Hooks/useFetchEntries", () => ({
+jest.mock("../../pages/api/src/Hooks/useFetchEntries", () => ({
   useFetchEntries: jest.fn(),
 }))
 
@@ -12,13 +12,13 @@ jest.mock("@auth0/nextjs-auth0/client", () => ({
   useUser: () => ({ user: { picture: "", name: "" } }),
 }))
 
-jest.mock("../pages/screens/Components/NavigationBar", () => {
+jest.mock("../../pages/screens/Components/NavigationBar", () => {
   const MockNavigationBar = () => <div>NavigationBar</div>
   MockNavigationBar.displayName = "MockNavigationBar"
   return MockNavigationBar
 })
 
-jest.mock("../pages/screens/Components/Entry", () => {
+jest.mock("../../pages/screens/Components/Entry", () => {
   const MockEntry = ({
     mood,
     activities,
@@ -47,8 +47,7 @@ jest.mock("../pages/screens/Components/Entry", () => {
   return MockEntry
 })
 
-// Mock the NewHeader component
-jest.mock("../pages/screens/Components/NewHeader", () => {
+jest.mock("../../pages/screens/Components/NewHeader", () => {
   const MockNewHeader = () => <div>NewHeader</div>
   MockNewHeader.displayName = "MockNewHeader"
   return MockNewHeader
