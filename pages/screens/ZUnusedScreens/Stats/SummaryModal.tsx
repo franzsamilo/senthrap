@@ -20,13 +20,12 @@ export default function SummaryModal(props: SummaryModalProps) {
     .sort((a, b) => {
       const timeA = new Date(a.summary_date_and_time).getTime()
       const timeB = new Date(b.summary_date_and_time).getTime()
-      return timeB - timeA // Sort in descending order
+      return timeB - timeA
     })
     .slice(0, 7)
 
   const { user } = useUser()
   useEffect(() => {
-    // Fetch data from API route on page load
     fetch(`/api/fetchSummaries`)
       .then((response) => {
         if (!response.ok) {
@@ -35,11 +34,10 @@ export default function SummaryModal(props: SummaryModalProps) {
         return response.json()
       })
       .then((data) => {
-        // Filter the data based on the user ID
         const filteredData = data.data.filter(
           (entry: ConversationSummariesData) => entry.user_id === user?.sub
         )
-        // Set the filtered data to the state
+
         setData(filteredData)
       })
       .catch((error) => console.error("Error:", error))

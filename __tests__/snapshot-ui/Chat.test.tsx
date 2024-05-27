@@ -4,12 +4,10 @@ import { render, screen } from "@testing-library/react"
 import Chat from "../../pages/screens/AIChat/Chat"
 import { useRouter } from "next/router"
 
-// Mock the useRouter hook
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }))
 
-// Mock the @auth0/nextjs-auth0/client module
 jest.mock("@auth0/nextjs-auth0/client", () => ({
   useUser: () => ({ user: { picture: "", name: "" } }),
 }))
@@ -17,7 +15,7 @@ jest.mock("@auth0/nextjs-auth0/client", () => ({
 describe("Chat component", () => {
   beforeAll(() => {
     ;(useRouter as jest.Mock).mockImplementation(() => ({
-      push: jest.fn(), // Mock the push method
+      push: jest.fn(),
     }))
   })
 
