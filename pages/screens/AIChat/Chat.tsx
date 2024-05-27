@@ -11,16 +11,17 @@ import NavigationBar from "../Components/NavigationBar"
 
 let openaiInstance: OpenAI
 
-async function getOpenAIInstance() {
+export async function getOpenAIInstance() {
   if (!openaiInstance) {
     const { default: OpenAI } = await import("openai")
     openaiInstance = new OpenAI({
-      apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+      apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY, // sk[dash]LkzakKi2b42tH4Be6i1PT3BlbkFJxor67qIcb4xxOGaccffq
       dangerouslyAllowBrowser: true,
     })
   }
   return openaiInstance
 }
+
 function Chat() {
   const { user } = useUser()
   const { navigateToChatSuccess } = useNavigation()
@@ -297,7 +298,7 @@ function Chat() {
             <button className="p-2" type="submit">
               <Image
                 src="/assets/svg's/lets-icons_send-hor.svg"
-                alt="Mood Icon"
+                alt="Send Icon"
                 width={42}
                 height={42}
               />
