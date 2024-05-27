@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import queryDocument from "./src/utils/queryDocument"
+import queryDocument from "../src/utils/queryDocument"
 import { getSession } from "@auth0/nextjs-auth0"
 import { DocumentData } from "firebase/firestore"
 

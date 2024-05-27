@@ -4,14 +4,16 @@ import { db } from "../config/firebase"
 export default async function uploadDocument(
   collectionName: string,
   data: object
-) {
+): Promise<string> {
   const collectionRef = collection(db, collectionName)
 
-  addDoc(collectionRef, data)
+  return addDoc(collectionRef, data)
     .then((docRef) => {
       console.log("Document written with ID: ", docRef.id)
+      return docRef.id
     })
     .catch((error) => {
       console.error("Error adding document: ", error)
+      throw error
     })
 }

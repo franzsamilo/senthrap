@@ -57,7 +57,6 @@ export default function HomeMoodLogChecker() {
       setAdvice(generatedAdvice)
       console.log(advice)
 
-      // After generating advice, submit the form
       if (advice) {
         const response = await fetch("/api/uploadEntry", {
           method: "POST",
@@ -85,7 +84,6 @@ export default function HomeMoodLogChecker() {
       }
     } catch (error) {
       console.error("Error generating advice:", error)
-      // Provide a fallback advice in case of an error
       setAdvice("Take care of yourself and stay positive!")
     }
   }

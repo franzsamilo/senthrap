@@ -36,6 +36,7 @@ describe("Chat component", () => {
   //teardown
   afterAll(() => {
     jest.clearAllMocks()
+    }))
   })
 
   test("renders Chat component without crashing", () => {
