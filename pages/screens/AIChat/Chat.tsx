@@ -15,7 +15,7 @@ async function getOpenAIInstance() {
   if (!openaiInstance) {
     const { default: OpenAI } = await import("openai")
     openaiInstance = new OpenAI({
-      apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+      apiKey: "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",
       dangerouslyAllowBrowser: true,
     })
   }
@@ -302,7 +302,7 @@ function Chat() {
             <button className="p-2" type="submit">
               <Image
                 src="/assets/svg's/lets-icons_send-hor.svg"
-                alt="Mood Icon"
+                alt="Send Icon"
                 width={42}
                 height={42}
               />

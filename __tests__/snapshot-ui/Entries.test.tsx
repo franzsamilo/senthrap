@@ -2,7 +2,7 @@ import React from "react"
 import "@testing-library/jest-dom"
 import { render, screen } from "@testing-library/react"
 import Entries from "../../pages/screens/Entries/Entries"
-import { useFetchEntries } from "../../pages/api/src/Hooks/useFetchEntries"
+import { useFetchEntries } from "../../pages/api/src/hooks/useFetchEntries"
 
 jest.mock("../../pages/api/src/Hooks/useFetchEntries", () => ({
   useFetchEntries: jest.fn(),
