@@ -11,16 +11,17 @@ import NavigationBar from "../Components/NavigationBar"
 
 let openaiInstance: OpenAI
 
-async function getOpenAIInstance() {
+export async function getOpenAIInstance() {
   if (!openaiInstance) {
     const { default: OpenAI } = await import("openai")
     openaiInstance = new OpenAI({
-      apiKey: "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",
+      apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
       dangerouslyAllowBrowser: true,
     })
   }
   return openaiInstance
 }
+
 function Chat() {
   const { user } = useUser()
   const { navigateToChatSuccess } = useNavigation()
