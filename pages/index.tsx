@@ -26,7 +26,7 @@ function Index() {
   }
 
   return (
-    <div className="bg-senthrap-splash bg-cover bg-center h-screen w-screen pt-12 ">
+    <div className=" bg-cover bg-center h-screen w-screen pt-12 bg-senthrap-blue-200">
       <div className="flex flex-col items-center h-full text-center justify-between">
         <div className="mx-12">
           <p className="text-5xl font-bold text-senthrap-new-yellow-light drop-shadow-2xl">
